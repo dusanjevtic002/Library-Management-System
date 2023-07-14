@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,11 @@ namespace LibraryManagementSystem
            
         }
 
+        public void setLblWelcome(String name)
+        {
+            this.lblWelcome.Text = "Welcome " + name;
+        }
+
         public static MainStage getInstance()
         {
             if (instance == null)
@@ -36,14 +43,11 @@ namespace LibraryManagementSystem
             Application.Exit();
         }
 
-        private void btnBooks_MouseHover(object sender, EventArgs e)
+        private void btnUsers_Click(object sender, EventArgs e)
         {
-            this.btnBooks.BackColor = Color.DarkGray;
-        }
-
-        private void btnBooks_MouseLeave(object sender, EventArgs e)
-        {
-            this.btnBooks.BackColor = Color.Gainsboro;
+            this.Hide();
+            UsersStage uStage = UsersStage.getInstance();
+            uStage.Show();
         }
     }
 }

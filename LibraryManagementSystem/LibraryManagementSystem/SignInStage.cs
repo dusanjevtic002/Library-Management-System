@@ -40,15 +40,22 @@ namespace LibraryManagementSystem
 
                 int count = 0;
 
+                String name = null;
+
                 while (reader.Read())
+                {
                     count++;
+                    name = reader.GetString(1);
+                }
 
                 if(count == 1)
                 {
                     MessageBox.Show("You have been signed in successfully", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainStage mainStage = new MainStage();
+                    MainStage mainStage = MainStage.getInstance();
                     this.Hide();
                     mainStage.Show();
+                    mainStage.setLblWelcome(name);
+
                 }
 
                 else

@@ -31,7 +31,7 @@ namespace LibraryManagementSystem
         private void btnBack_Click(object sender, EventArgs e)
         {
             this.Hide();
-            SignInStage signInStage = new SignInStage();
+            SignInStage signInStage = SignInStage.getInstance();
             signInStage.Show();
         }
 

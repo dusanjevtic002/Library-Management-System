@@ -114,6 +114,12 @@
     <Compile Include="SignUpStage.Designer.cs">
       <DependentUpon>SignUpStage.cs</DependentUpon>
     </Compile>
+    <Compile Include="UsersStage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UsersStage.Designer.cs">
+      <DependentUpon>UsersStage.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="MainStage.resx">
       <DependentUpon>MainStage.cs</DependentUpon>
     </EmbeddedResource>
@@ -127,6 +133,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SignUpStage.resx">
       <DependentUpon>SignUpStage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UsersStage.resx">
+      <DependentUpon>UsersStage.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="LocalDatabaseAllAccountsDataSet.xsc">
       <DependentUpon>LocalDatabaseAllAccountsDataSet.xsd</DependentUpon>

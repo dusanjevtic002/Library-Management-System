@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignUpStage));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lBAllAccountsTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.localDatabaseAllAccountsDataSet = new LibraryManagementSystem.LocalDatabaseAllAccountsDataSet();
             this.btnBack = new System.Windows.Forms.Button();
             this.cBoxShowPassword = new System.Windows.Forms.CheckBox();
             this.btnSignUp = new System.Windows.Forms.Button();
@@ -49,23 +51,13 @@
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblSignUp = new System.Windows.Forms.Label();
             this.pBoxIconSignUp = new System.Windows.Forms.PictureBox();
-            this.lBAllAccountsTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.localDatabaseAllAccountsDataSet = new LibraryManagementSystem.LocalDatabaseAllAccountsDataSet();
             this.lBAllAccountsTableTableAdapter = new LibraryManagementSystem.LocalDatabaseAllAccountsDataSetTableAdapters.LBAllAccountsTableTableAdapter();
             this.tableAdapterManager = new LibraryManagementSystem.LocalDatabaseAllAccountsDataSetTableAdapters.TableAdapterManager();
-            this.lBAllAccountsTableDataGridView = new System.Windows.Forms.DataGridView();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxIconSignUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lBAllAccountsTableBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.localDatabaseAllAccountsDataSet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lBAllAccountsTableDataGridView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxIconSignUp)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -74,7 +66,7 @@
             this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.bacgrkoundLogInForm;
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(1134, 747);
+            this.pictureBox1.Size = new System.Drawing.Size(884, 561);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
@@ -84,7 +76,6 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel1.Controls.Add(this.lBAllAccountsTableDataGridView);
             this.panel1.Controls.Add(this.btnBack);
             this.panel1.Controls.Add(this.cBoxShowPassword);
             this.panel1.Controls.Add(this.btnSignUp);
@@ -102,10 +93,20 @@
             this.panel1.Controls.Add(this.lblFirstName);
             this.panel1.Controls.Add(this.lblSignUp);
             this.panel1.Controls.Add(this.pBoxIconSignUp);
-            this.panel1.Location = new System.Drawing.Point(261, 71);
+            this.panel1.Location = new System.Drawing.Point(260, 52);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(631, 625);
+            this.panel1.Size = new System.Drawing.Size(365, 442);
             this.panel1.TabIndex = 1;
+            // 
+            // lBAllAccountsTableBindingSource
+            // 
+            this.lBAllAccountsTableBindingSource.DataMember = "LBAllAccountsTable";
+            this.lBAllAccountsTableBindingSource.DataSource = this.localDatabaseAllAccountsDataSet;
+            // 
+            // localDatabaseAllAccountsDataSet
+            // 
+            this.localDatabaseAllAccountsDataSet.DataSetName = "LocalDatabaseAllAccountsDataSet";
+            this.localDatabaseAllAccountsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnBack
             // 
@@ -260,16 +261,6 @@
             this.pBoxIconSignUp.TabIndex = 0;
             this.pBoxIconSignUp.TabStop = false;
             // 
-            // lBAllAccountsTableBindingSource
-            // 
-            this.lBAllAccountsTableBindingSource.DataMember = "LBAllAccountsTable";
-            this.lBAllAccountsTableBindingSource.DataSource = this.localDatabaseAllAccountsDataSet;
-            // 
-            // localDatabaseAllAccountsDataSet
-            // 
-            this.localDatabaseAllAccountsDataSet.DataSetName = "LocalDatabaseAllAccountsDataSet";
-            this.localDatabaseAllAccountsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
             // lBAllAccountsTableTableAdapter
             // 
             this.lBAllAccountsTableTableAdapter.ClearBeforeFill = true;
@@ -280,64 +271,11 @@
             this.tableAdapterManager.LBAllAccountsTableTableAdapter = this.lBAllAccountsTableTableAdapter;
             this.tableAdapterManager.UpdateOrder = LibraryManagementSystem.LocalDatabaseAllAccountsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
             // 
-            // lBAllAccountsTableDataGridView
-            // 
-            this.lBAllAccountsTableDataGridView.AutoGenerateColumns = false;
-            this.lBAllAccountsTableDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.lBAllAccountsTableDataGridView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.dataGridViewTextBoxColumn1,
-            this.dataGridViewTextBoxColumn2,
-            this.dataGridViewTextBoxColumn3,
-            this.dataGridViewTextBoxColumn4,
-            this.dataGridViewTextBoxColumn5,
-            this.dataGridViewTextBoxColumn6});
-            this.lBAllAccountsTableDataGridView.DataSource = this.lBAllAccountsTableBindingSource;
-            this.lBAllAccountsTableDataGridView.Location = new System.Drawing.Point(311, 385);
-            this.lBAllAccountsTableDataGridView.Name = "lBAllAccountsTableDataGridView";
-            this.lBAllAccountsTableDataGridView.Size = new System.Drawing.Size(300, 220);
-            this.lBAllAccountsTableDataGridView.TabIndex = 17;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "Id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Id";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "FirstName";
-            this.dataGridViewTextBoxColumn2.HeaderText = "FirstName";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "LastName";
-            this.dataGridViewTextBoxColumn3.HeaderText = "LastName";
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Gender";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Gender";
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Email";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Email";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Password";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Password";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
             // SignUpStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1134, 747);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -349,10 +287,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxIconSignUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lBAllAccountsTableBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.localDatabaseAllAccountsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lBAllAccountsTableDataGridView)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pBoxIconSignUp)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -382,12 +319,5 @@
         private System.Windows.Forms.BindingSource lBAllAccountsTableBindingSource;
         private LocalDatabaseAllAccountsDataSetTableAdapters.LBAllAccountsTableTableAdapter lBAllAccountsTableTableAdapter;
         private LocalDatabaseAllAccountsDataSetTableAdapters.TableAdapterManager tableAdapterManager;
-        private System.Windows.Forms.DataGridView lBAllAccountsTableDataGridView;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
     }
 }
