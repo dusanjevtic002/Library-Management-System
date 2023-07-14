@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainStage));
             this.panelLeftDock = new System.Windows.Forms.Panel();
+            this.btnBooks = new System.Windows.Forms.Button();
+            this.btnFaqs = new System.Windows.Forms.Button();
             this.btnUsers = new System.Windows.Forms.Button();
             this.btnSettings = new System.Windows.Forms.Button();
             this.btnNotice = new System.Windows.Forms.Button();
@@ -38,8 +40,6 @@
             this.lblLMS = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lblWelcome = new System.Windows.Forms.Label();
-            this.btnFaqs = new System.Windows.Forms.Button();
-            this.btnBooks = new System.Windows.Forms.Button();
             this.panelLeftDock.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -59,6 +59,28 @@
             this.panelLeftDock.Name = "panelLeftDock";
             this.panelLeftDock.Size = new System.Drawing.Size(239, 711);
             this.panelLeftDock.TabIndex = 0;
+            // 
+            // btnBooks
+            // 
+            this.btnBooks.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnBooks.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.725F);
+            this.btnBooks.Location = new System.Drawing.Point(0, 72);
+            this.btnBooks.Name = "btnBooks";
+            this.btnBooks.Size = new System.Drawing.Size(239, 51);
+            this.btnBooks.TabIndex = 7;
+            this.btnBooks.Text = "Books";
+            this.btnBooks.UseVisualStyleBackColor = false;
+            // 
+            // btnFaqs
+            // 
+            this.btnFaqs.BackColor = System.Drawing.Color.Gainsboro;
+            this.btnFaqs.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
+            this.btnFaqs.Location = new System.Drawing.Point(0, 141);
+            this.btnFaqs.Name = "btnFaqs";
+            this.btnFaqs.Size = new System.Drawing.Size(239, 51);
+            this.btnFaqs.TabIndex = 6;
+            this.btnFaqs.Text = "Faqs";
+            this.btnFaqs.UseVisualStyleBackColor = false;
             // 
             // btnUsers
             // 
@@ -80,6 +102,7 @@
             this.btnSettings.TabIndex = 4;
             this.btnSettings.Text = "Settings";
             this.btnSettings.UseVisualStyleBackColor = true;
+            this.btnSettings.Click += new System.EventHandler(this.btnSettings_Click);
             // 
             // btnNotice
             // 
@@ -139,28 +162,6 @@
             this.lblWelcome.Size = new System.Drawing.Size(152, 55);
             this.lblWelcome.TabIndex = 3;
             this.lblWelcome.Text = "label1";
-            // 
-            // btnFaqs
-            // 
-            this.btnFaqs.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnFaqs.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F);
-            this.btnFaqs.Location = new System.Drawing.Point(0, 141);
-            this.btnFaqs.Name = "btnFaqs";
-            this.btnFaqs.Size = new System.Drawing.Size(239, 51);
-            this.btnFaqs.TabIndex = 6;
-            this.btnFaqs.Text = "Faqs";
-            this.btnFaqs.UseVisualStyleBackColor = false;
-            // 
-            // btnBooks
-            // 
-            this.btnBooks.BackColor = System.Drawing.Color.Gainsboro;
-            this.btnBooks.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.725F);
-            this.btnBooks.Location = new System.Drawing.Point(0, 72);
-            this.btnBooks.Name = "btnBooks";
-            this.btnBooks.Size = new System.Drawing.Size(239, 51);
-            this.btnBooks.TabIndex = 7;
-            this.btnBooks.Text = "Books";
-            this.btnBooks.UseVisualStyleBackColor = false;
             // 
             // MainStage
             // 

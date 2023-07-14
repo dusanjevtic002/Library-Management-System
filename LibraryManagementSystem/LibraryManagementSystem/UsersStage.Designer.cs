@@ -29,10 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UsersStage));
-            this.headerPanel = new System.Windows.Forms.Panel();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblUsers = new System.Windows.Forms.Label();
+            this.panelHeaderUsers = new System.Windows.Forms.Panel();
             this.btnBackU = new System.Windows.Forms.Button();
+            this.lblUsers = new System.Windows.Forms.Label();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.txtBoxFirstNameU = new System.Windows.Forms.TextBox();
             this.txtBoxLastNameU = new System.Windows.Forms.TextBox();
@@ -48,41 +47,23 @@
             this.txtBoxEmployeeID = new System.Windows.Forms.TextBox();
             this.lblEmployeeID = new System.Windows.Forms.Label();
             this.comboBoxGenderU = new System.Windows.Forms.ComboBox();
-            this.headerPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.panelHeaderUsers.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // headerPanel
+            // panelHeaderUsers
             // 
-            this.headerPanel.BackColor = System.Drawing.Color.White;
-            this.headerPanel.Controls.Add(this.btnBackU);
-            this.headerPanel.Controls.Add(this.lblUsers);
-            this.headerPanel.Controls.Add(this.pictureBox1);
-            this.headerPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.headerPanel.Location = new System.Drawing.Point(0, 0);
-            this.headerPanel.Name = "headerPanel";
-            this.headerPanel.Size = new System.Drawing.Size(1184, 60);
-            this.headerPanel.TabIndex = 0;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.User32px;
-            this.pictureBox1.Location = new System.Drawing.Point(484, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 37);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // lblUsers
-            // 
-            this.lblUsers.AutoSize = true;
-            this.lblUsers.Font = new System.Drawing.Font("Constantia", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsers.Location = new System.Drawing.Point(525, 15);
-            this.lblUsers.Name = "lblUsers";
-            this.lblUsers.Size = new System.Drawing.Size(209, 29);
-            this.lblUsers.TabIndex = 1;
-            this.lblUsers.Text = "Users (Employees)";
+            this.panelHeaderUsers.BackColor = System.Drawing.Color.DarkCyan;
+            this.panelHeaderUsers.Controls.Add(this.btnBackU);
+            this.panelHeaderUsers.Controls.Add(this.lblUsers);
+            this.panelHeaderUsers.Controls.Add(this.pictureBox1);
+            this.panelHeaderUsers.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelHeaderUsers.Location = new System.Drawing.Point(0, 0);
+            this.panelHeaderUsers.Name = "panelHeaderUsers";
+            this.panelHeaderUsers.Size = new System.Drawing.Size(1184, 60);
+            this.panelHeaderUsers.TabIndex = 0;
             // 
             // btnBackU
             // 
@@ -93,6 +74,16 @@
             this.btnBackU.Text = "Back";
             this.btnBackU.UseVisualStyleBackColor = true;
             this.btnBackU.Click += new System.EventHandler(this.btnBackU_Click);
+            // 
+            // lblUsers
+            // 
+            this.lblUsers.AutoSize = true;
+            this.lblUsers.Font = new System.Drawing.Font("Constantia", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsers.Location = new System.Drawing.Point(525, 15);
+            this.lblUsers.Name = "lblUsers";
+            this.lblUsers.Size = new System.Drawing.Size(209, 29);
+            this.lblUsers.TabIndex = 1;
+            this.lblUsers.Text = "Users (Employees)";
             // 
             // dgvUsers
             // 
@@ -230,6 +221,15 @@
             this.comboBoxGenderU.Size = new System.Drawing.Size(156, 21);
             this.comboBoxGenderU.TabIndex = 16;
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.User32px;
+            this.pictureBox1.Location = new System.Drawing.Point(484, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // UsersStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -251,7 +251,7 @@
             this.Controls.Add(this.txtBoxLastNameU);
             this.Controls.Add(this.txtBoxFirstNameU);
             this.Controls.Add(this.dgvUsers);
-            this.Controls.Add(this.headerPanel);
+            this.Controls.Add(this.panelHeaderUsers);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -260,10 +260,10 @@
             this.Text = "Library Management System - Users";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UsersStage_FormClosing);
             this.Load += new System.EventHandler(this.UsersStage_Load);
-            this.headerPanel.ResumeLayout(false);
-            this.headerPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.panelHeaderUsers.ResumeLayout(false);
+            this.panelHeaderUsers.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -271,7 +271,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Panel headerPanel;
+        private System.Windows.Forms.Panel panelHeaderUsers;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label lblUsers;
         private System.Windows.Forms.Button btnBackU;

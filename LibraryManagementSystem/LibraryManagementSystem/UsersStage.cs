@@ -64,14 +64,6 @@ namespace LibraryManagementSystem
             }
         }
 
-        public static UsersStage getInstance()
-        {
-            if (instance == null)
-                instance = new UsersStage();
-
-            return instance;
-        }
-
         private void btnBackU_Click(object sender, EventArgs e)
         {
             txtBoxEmployeeID.Text = "";
@@ -133,6 +125,41 @@ namespace LibraryManagementSystem
             {
                 MessageBox.Show(exception.Message);
             }
+        }
+
+        public void setTheme1UsersStage()
+        {
+            this.panelHeaderUsers.BackColor = Color.DarkCyan;
+            this.BackColor = Color.Silver;
+            this.lblUsers.ForeColor = Color.Black;
+            this.lblFirstNameU.ForeColor = Color.Black;
+            this.lblLastNameU.ForeColor = Color.Black;
+            this.lblGenderU.ForeColor = Color.Black;
+            this.lblInformation.ForeColor = Color.Black;
+            this.lblEmailU.ForeColor = Color.Black;
+            this.lblPassword.ForeColor = Color.Black;
+            this.lblEmployeeID.ForeColor = Color.Black;
+        }
+
+        public void setTheme2UsersStage()
+        {
+            this.panelHeaderUsers.BackColor = Color.FromArgb(76, 77, 108);
+            this.BackColor = Color.FromArgb(43, 45, 61);
+            this.lblUsers.ForeColor = Color.White;
+            this.lblFirstNameU.ForeColor = Color.White;
+            this.lblLastNameU.ForeColor = Color.White;
+            this.lblGenderU.ForeColor = Color.White;
+            this.lblInformation.ForeColor = Color.White;
+            this.lblEmailU.ForeColor = Color.White;
+            this.lblPassword.ForeColor = Color.White;
+            this.lblEmployeeID.ForeColor = Color.White;
+        }
+        public static UsersStage getInstance()
+        {
+            if (instance == null)
+                instance = new UsersStage();
+
+            return instance;
         }
     }
 }
