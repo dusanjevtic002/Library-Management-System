@@ -40,6 +40,9 @@ namespace LibraryManagementSystem
             this.comboBoxGender.Items.Add("Male");
             this.comboBoxGender.Items.Add("Female");
             this.comboBoxGender.SelectedIndex = 0;
+
+            //Omogucava mi da comboBox bude readonly
+            this.comboBoxGender.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void adjustPasswordBoxes()

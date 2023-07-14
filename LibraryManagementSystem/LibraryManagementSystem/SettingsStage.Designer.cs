@@ -120,7 +120,7 @@
             // pBoxGearIcon
             // 
             this.pBoxGearIcon.Image = global::LibraryManagementSystem.Properties.Resources.Gear32px;
-            this.pBoxGearIcon.Location = new System.Drawing.Point(486, 14);
+            this.pBoxGearIcon.Location = new System.Drawing.Point(486, 16);
             this.pBoxGearIcon.Name = "pBoxGearIcon";
             this.pBoxGearIcon.Size = new System.Drawing.Size(34, 35);
             this.pBoxGearIcon.TabIndex = 2;

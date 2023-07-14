@@ -100,6 +100,12 @@
     <Compile Include="MainStage.Designer.cs">
       <DependentUpon>MainStage.cs</DependentUpon>
     </Compile>
+    <Compile Include="NoticeStage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NoticeStage.Designer.cs">
+      <DependentUpon>NoticeStage.cs</DependentUpon>
+    </Compile>
     <Compile Include="SettingsStage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -128,6 +134,9 @@
     </Compile>
     <EmbeddedResource Include="MainStage.resx">
       <DependentUpon>MainStage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoticeStage.resx">
+      <DependentUpon>NoticeStage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="SettingsStage.resx">
       <DependentUpon>SettingsStage.cs</DependentUpon>
@@ -216,6 +225,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>LocalDatabaseAllAccounts.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\Notice32px.png" />
     <None Include="Resources\Option2.jpg" />
     <None Include="Resources\Option1.jpg" />
     <None Include="Resources\Gear32px.png" />

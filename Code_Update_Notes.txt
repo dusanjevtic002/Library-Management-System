@@ -1,0 +1,16 @@
+Vreme ažuriranja ( 18:15h 14.07.2023.)
+ 
+Nove stvari:
+	· NoticeStage (celokupan novi stage, koji se otvara klikom na dugme "Notice" u okviru MainStage-a, a čija je svrha da se pišu i "printuju" obaveštenja).
+
+	· Promena u SignUpStage-u, gender ComboBox je sada ReadOnly, odnosno moguće je samo izabrati neku od ponuđenih opcija.
+		 - U metodi "loadComboBoxGenders" je dodata linija koda koja ovo omogućava.
+
+	· Promena u SettingsStage-u, odnosno teme će se sada primenjivati i na novonastalom stage-u "NoticeStage".
+		 - U metodi "btnSetTheme1_Click" je dodata instanca klase "NoticeStage", nad kojom se poziva metoda za postavljanje teme 1.
+		 - U metodi "btnSetTheme2_Click" je dodata instanca klase "NoticeStage", nad kojom se poziva metoda za postavljanje teme 2.
+
+	· Promena u svim klasama koje za polje imaju svoju instancu (MainStage, NoticeStage, SignInStage, UsersStage, SettingsStage)
+		 - Modifikator pristupa konstruktora ovih klasa više nije public, već private, kako se ne bi remetio singleton šablon.
+
+__________________________________________________________________________________________________________________________________________________________________

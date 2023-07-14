@@ -69,7 +69,7 @@
             // 
             this.btnBackU.Location = new System.Drawing.Point(12, 12);
             this.btnBackU.Name = "btnBackU";
-            this.btnBackU.Size = new System.Drawing.Size(72, 25);
+            this.btnBackU.Size = new System.Drawing.Size(70, 25);
             this.btnBackU.TabIndex = 2;
             this.btnBackU.Text = "Back";
             this.btnBackU.UseVisualStyleBackColor = true;

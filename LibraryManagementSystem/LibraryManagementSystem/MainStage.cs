@@ -15,7 +15,7 @@ namespace LibraryManagementSystem
     public partial class MainStage : Form
     {
         private static MainStage instance;
-        public MainStage()
+        private MainStage()
         {
             InitializeComponent();
         }
@@ -66,6 +66,14 @@ namespace LibraryManagementSystem
             SettingsStage settingsStage = SettingsStage.getInstance();
             settingsStage.Show();
         }
+
+        private void btnNotice_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            NoticeStage noticeStage = NoticeStage.getInstance();
+            noticeStage.Show();
+        }
+
         public static MainStage getInstance()
         {
             if (instance == null)

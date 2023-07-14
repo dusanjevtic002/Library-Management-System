@@ -15,7 +15,7 @@ namespace LibraryManagementSystem
     public partial class SignInStage : Form
     {
         private static SignInStage instance;
-        public SignInStage()
+        private SignInStage()
         {
             InitializeComponent();
         }

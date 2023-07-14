@@ -13,7 +13,7 @@ namespace LibraryManagementSystem
     public partial class SettingsStage : Form
     {
         private static SettingsStage instance;
-        public SettingsStage()
+        private SettingsStage()
         {
             InitializeComponent();
         }
@@ -31,9 +31,11 @@ namespace LibraryManagementSystem
             setTheme1SettingsStage();
             MainStage mainStage = MainStage.getInstance();
             UsersStage usersStage = UsersStage.getInstance();
+            NoticeStage noticeStage = NoticeStage.getInstance();
 
             mainStage.setTheme1MainStage();
             usersStage.setTheme1UsersStage();
+            noticeStage.setTheme1NoticeStage();
         }
 
         private void btnSetTheme2_Click(object sender, EventArgs e)
@@ -41,9 +43,11 @@ namespace LibraryManagementSystem
             setTheme2SettingsStage();
             MainStage mainStage = MainStage.getInstance();
             UsersStage usersStage = UsersStage.getInstance();
+            NoticeStage noticeStage = NoticeStage.getInstance();
 
             mainStage.setTheme2MainStage();
             usersStage.setTheme2UsersStage();
+            noticeStage.setTheme2NoticeStage();
         }
 
         private void setTheme1SettingsStage()
