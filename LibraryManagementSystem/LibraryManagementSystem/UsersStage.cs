@@ -24,6 +24,12 @@ namespace LibraryManagementSystem
         {
             loadUsers();
             adjustTextBoxes();
+            adjustDataGrid();
+        }
+
+        private void adjustDataGrid()
+        {
+            this.dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
 
         private void adjustTextBoxes()
@@ -76,20 +82,6 @@ namespace LibraryManagementSystem
             this.Hide();
             MainStage mainStage = MainStage.getInstance();
             mainStage.Show();
-        }
-
-        private void dgvUsers_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if(e.RowIndex >= 0)
-            {
-                DataGridViewRow row = this.dgvUsers.Rows[e.RowIndex];
-                txtBoxEmployeeID.Text = row.Cells["Employee ID"].Value.ToString();
-                txtBoxFirstNameU.Text = row.Cells["First Name"].Value.ToString();
-                txtBoxLastNameU.Text = row.Cells["Last Name"].Value.ToString();
-                comboBoxGenderU.Text = row.Cells["Gender"].Value.ToString();
-                txtBoxEmailU.Text = row.Cells["Email"].Value.ToString();
-                txtBoxPasswordU.Text = row.Cells["Password"].Value.ToString();
-            }
         }
 
         private void UsersStage_FormClosing(object sender, FormClosingEventArgs e)
@@ -154,6 +146,21 @@ namespace LibraryManagementSystem
             this.lblPassword.ForeColor = Color.White;
             this.lblEmployeeID.ForeColor = Color.White;
         }
+
+        private void dgvUsers_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = this.dgvUsers.Rows[e.RowIndex];
+                txtBoxEmployeeID.Text = row.Cells["Employee ID"].Value.ToString();
+                txtBoxFirstNameU.Text = row.Cells["First Name"].Value.ToString();
+                txtBoxLastNameU.Text = row.Cells["Last Name"].Value.ToString();
+                comboBoxGenderU.Text = row.Cells["Gender"].Value.ToString();
+                txtBoxEmailU.Text = row.Cells["Email"].Value.ToString();
+                txtBoxPasswordU.Text = row.Cells["Password"].Value.ToString();
+            }
+        }
+
         public static UsersStage getInstance()
         {
             if (instance == null)

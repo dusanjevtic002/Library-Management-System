@@ -20,11 +20,6 @@ namespace LibraryManagementSystem
             InitializeComponent();
         }
 
-        private void MainStage_Load(object sender, EventArgs e)
-        {
-           
-        }
-
         public void setLblWelcome(String name)
         {
             this.lblWelcome.Text = "Welcome " + name;
@@ -74,6 +69,13 @@ namespace LibraryManagementSystem
             noticeStage.Show();
         }
 
+        private void btnFaqs_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            FaqsStage faqsStage = FaqsStage.getInstance();
+            faqsStage.Show();
+        }
+
         public static MainStage getInstance()
         {
             if (instance == null)
@@ -81,5 +83,6 @@ namespace LibraryManagementSystem
 
             return instance;
         }
+  
     }
 }

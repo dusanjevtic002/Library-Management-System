@@ -65,8 +65,26 @@ namespace LibraryManagementSystem
             Application.Exit();
         }
 
+        //Resava problem sa jedinstvenim Id-jem
+        private void adjustCounter()
+        {
+            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDatabaseAllAccountsConnectionString"].ConnectionString;
+            SqlConnection con = new SqlConnection(connectionString);
+            con.Open();
+
+            string query = "SELECT COUNT(*) FROM LBAllAccountsTable";
+            SqlCommand command = new SqlCommand(query, con);
+
+            int count = (int)command.ExecuteScalar();
+
+            if (count > 0)
+                counter = count + 1;
+        }
+
         private void btnSignUp_Click(object sender, EventArgs e)
         {
+            adjustCounter();
+
             String firstName = txtBoxFirstName.Text;
             String lastName = txtBoxLastName.Text;
             String gender = comboBoxGender.Text;

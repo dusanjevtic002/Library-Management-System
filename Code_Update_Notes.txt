@@ -13,4 +13,25 @@ Nove stvari:
 	· Promena u svim klasama koje za polje imaju svoju instancu (MainStage, NoticeStage, SignInStage, UsersStage, SettingsStage)
 		 - Modifikator pristupa konstruktora ovih klasa više nije public, već private, kako se ne bi remetio singleton šablon.
 
-__________________________________________________________________________________________________________________________________________________________________
+______________________________________________________________________________________________________________________________________________________________________
+Vreme ažuriranja ( 04:20h 15.07.2023.)
+
+Nove stvari:
+	· FaqsStage (Celokupan novi stage, koji se otvara klikom na dugme "Faqs" u okviru MainStage-a, čija je svrha da se dodaju, edituju i prikazuju česta pitanja.
+	
+	· Dodata baza podataka "LocalDataBaseAllQuestions", koja služi za skladištenje pitanja koja se mogu dodati unutar FaqsStage-a.
+	
+	· Promena u klasi UsersStage, metoda "dgvUsers_CellContentClick" je zamenjena metodom "dgvUsers_CellClick". 
+		S obzirom da prethodna metoda nije bila delotvorna, odnosno bilo je potrebno više puta kliknuti na neki red kako bi se popunili text fieldovi.
+	
+	· Promena u klasi UsersStage, dodata metoda "adjustDataGrid".
+
+	· Promena u klasi SignUpStage, dodata metoda "adjustCounter" koja rešava problem pri registrovanju novog radnika.
+	  	Problem je nastajao iz razloga što Id vrednost u bazi podataka treba da bude jedinstvena, a counter je uvek počinjao "odbrojavanje" od 0
+	  	samim tim neke vrednosti Id-jeva su se podudarale što je izazivao error. Ova metoda rešava ovaj problem tako što broji koliko ima redova 
+	  	u bazi podataka, i na tu vrednost dodaje 1 kako bi se nastavilo brojanje pravim redosledom.
+	
+	· Promena u SettingsStage-u, odnosno teme će se sada primenjivati i na novonastalom stage-u "FaqsStage".
+
+
+______________________________________________________________________________________________________________________________________________________________________

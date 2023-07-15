@@ -38,8 +38,8 @@
             this.btnTransactions = new System.Windows.Forms.Button();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.lblLMS = new System.Windows.Forms.Label();
-            this.lblWelcome = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.lblWelcome = new System.Windows.Forms.Label();
             this.panelLeftDock.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -81,6 +81,7 @@
             this.btnFaqs.TabIndex = 6;
             this.btnFaqs.Text = "Faqs";
             this.btnFaqs.UseVisualStyleBackColor = false;
+            this.btnFaqs.Click += new System.EventHandler(this.btnFaqs_Click);
             // 
             // btnUsers
             // 
@@ -145,6 +146,15 @@
             this.lblLMS.TabIndex = 4;
             this.lblLMS.Text = "LMS";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.Books32px;
+            this.pictureBox1.Location = new System.Drawing.Point(12, 9);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(35, 38);
+            this.pictureBox1.TabIndex = 3;
+            this.pictureBox1.TabStop = false;
+            // 
             // lblWelcome
             // 
             this.lblWelcome.AutoSize = true;
@@ -154,15 +164,6 @@
             this.lblWelcome.Size = new System.Drawing.Size(152, 55);
             this.lblWelcome.TabIndex = 3;
             this.lblWelcome.Text = "label1";
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.Books32px;
-            this.pictureBox1.Location = new System.Drawing.Point(12, 9);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(35, 38);
-            this.pictureBox1.TabIndex = 3;
-            this.pictureBox1.TabStop = false;
             // 
             // MainStage
             // 
@@ -180,7 +181,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Library Management System";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainStage_FormClosing);
-            this.Load += new System.EventHandler(this.MainStage_Load);
             this.panelLeftDock.ResumeLayout(false);
             this.panelHeader.ResumeLayout(false);
             this.panelHeader.PerformLayout();

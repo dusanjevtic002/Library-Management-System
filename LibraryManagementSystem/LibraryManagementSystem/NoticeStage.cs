@@ -157,5 +157,10 @@ namespace LibraryManagementSystem
 
             return instance;
         }
+
+        private void NoticeStage_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

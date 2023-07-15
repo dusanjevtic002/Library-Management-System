@@ -326,6 +326,7 @@
             this.Name = "NoticeStage";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Library Management System - Notice";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NoticeStage_FormClosing);
             this.panelHeaderNotice.ResumeLayout(false);
             this.panelHeaderNotice.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxNotice)).EndInit();

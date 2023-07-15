@@ -3,4 +3,16 @@ Datum: 14.7.2023.
 		  Aktivnosti: 
 			1. Planirano do kraja dana realizovati "FAQS-stage" (Frequentyl Asked Questions - stage)
 			2. Podesiti "Settings-stage", odnosno da se izabrana tema implementira i na novi stage "FAQS-stage";
-				
+			
+_______________________________________________________________________________________________________________________________________________		
+Datum: 15.7.2023.
+		  Aktivnosti: 
+			1. Planirano do kraja dana realizovati "Books-stage"
+			2. Dodati bazu podataka za knjige
+			3. Dodati implementaciju za print dugme u okviru "Faqs" stage-a
+			4. Podesiti Settings stage tako da se tema aplicira i na "Books" stage
+			5. Eventualno dodati nešto na "MainStage", s obzirom da je dosta prazan.
+			
+
+________________________________________________________________________________________________________________________________________________
+	

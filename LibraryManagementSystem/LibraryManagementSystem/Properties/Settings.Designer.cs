@@ -77,5 +77,16 @@ namespace LibraryManagementSystem.Properties {
                 return ((string)(this["LocalDatabaseAllAccountsConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=|DataDirectory|\\LocalDataBase" +
+            "AllQuestions.mdf;Integrated Security=True")]
+        public string LocalDataBaseAllQuestionsConnectionString {
+            get {
+                return ((string)(this["LocalDataBaseAllQuestionsConnectionString"]));
+            }
+        }
     }
 }
