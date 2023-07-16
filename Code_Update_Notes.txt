@@ -55,3 +55,29 @@ Nove stvari:
 	  pogotovo ako budemo želeli da dodamo mogućnost brisanja naloga u budućnosti.
 	
 	· Promena u SettingsStage-u, odnosno teme će se primenjivati i na novonastalom stage-u "BooksStage"
+______________________________________________________________________________________________________________________________________________________________________
+Vreme ažuriranja ( 01:15h 17.07.2023.)
+
+Nove stvari:
+	· Promena u klasi BooksStage, metode "searchOption1", "searchOption2", "searchOption3", "searchOption4" su skraćene, odnosno delile su isti deo koda
+	  koji otvara konekciju sa bazom podataka i executuje query, sada je taj deo koda pomeren u zasebnu metodu "executeSearchOption", i svaka od gore navedenih
+	  metoda poziva ovu metodu, umesto da se isti kod ponavlja.	
+	
+	· Promena u bazi podataka za knjige, dodata nova kolona za cenu
+	
+	· Promena u klasi BooksStage, textBox za quantity je zamenjen maskedTextBoxom i dodat je maskedTextBox za price
+	
+	· Promena u klasi BooksStage, u metodi "btnAdd_Click" je dodata provera za kolicinu i cenu knjiga, odnosno da li je uneti input ispravan
+
+	· TransactionsStage, celokupan novi stage, koji se otvara iz mainStage-a
+	
+	· Dodata baza podataka za pozajmljene knjige
+	
+	· BorrowerInfoStage, novi stage u okviru TransactionsStage-a, odnosno stage u kom se unose podaci onog ko pozajmljuje knjigu
+		Na ovom stejdzu
+	
+	· PaymentStage, novi stage u okviru TransactionsStage-a, odnosno stage u kom se nalaze podaci o računu
+	
+	· Promena u Klasi SettingsStage, odnosno teme će se primenjivati i na novonastalom stage-u "TransactionsStage"
+	
+	

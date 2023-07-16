@@ -20,4 +20,10 @@ Datum: 16.7.2023.
 			1. Planirano do kraja dana realizovati "Transactions-stage"
 			2. Dodati bazu podataka u koju će se pomerati knjige koje su pozajmljene
 			3. Realizovati ceo proces transakcije i prodaje knjiga
-			4. Podesiti imena promenljivih u svim klasama, pošto postoji nekonzistentnost.
+			4. Podesiti imena promenljivih u svim klasama, pošto postoji nekonzistentnost. (Nije odradjeno)
+
+
+________________________________________________________________________________________________________________________________________________
+Datum: 17.7.2023.
+		Aktivnosti:
+			1. "Doterativanje" koda

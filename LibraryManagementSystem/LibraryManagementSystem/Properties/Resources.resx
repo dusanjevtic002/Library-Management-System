@@ -118,29 +118,41 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Faqs32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Faqs32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Option2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Option2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Notice32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Notice32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Option1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Option1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="grocery-store" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\grocery-store.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Books24px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Books24px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="User32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\User32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="information-button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\information-button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="grocery-store (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\grocery-store (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Option2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Option2.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Faqs32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Faqs32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="transaction (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transaction (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="transaction (2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transaction (2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Notice32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Notice32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="BooksStage32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\BooksStage32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="books" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\books.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Books32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Books32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="Option1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Option1.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Gear32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Gear32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -148,10 +160,22 @@
   <data name="bacgrkoundLogInForm" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\bacgrkoundLogInForm.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="BooksStage32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\BooksStage32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="payment-method" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\payment-method.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="transaction32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\transaction32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="OpenBook32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\OpenBook32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="User32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\User32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Books32px" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Books32px.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="payment-method (1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\payment-method (1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

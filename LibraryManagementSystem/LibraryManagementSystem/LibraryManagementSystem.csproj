@@ -95,6 +95,18 @@
     <Compile Include="BooksStage.Designer.cs">
       <DependentUpon>BooksStage.cs</DependentUpon>
     </Compile>
+    <Compile Include="BorrowerInfoStage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BorrowerInfoStage.Designer.cs">
+      <DependentUpon>BorrowerInfoStage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentStage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PaymentStage.Designer.cs">
+      <DependentUpon>PaymentStage.cs</DependentUpon>
+    </Compile>
     <Compile Include="FaqsStage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +122,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalDataBaseAllBooksDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LocalDataBaseAllBorrowedBooksDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalDataBaseAllBorrowedBooksDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="LocalDataBaseAllQuestionsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -148,6 +165,12 @@
     <Compile Include="SignUpStage.Designer.cs">
       <DependentUpon>SignUpStage.cs</DependentUpon>
     </Compile>
+    <Compile Include="TransactionsStage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TransactionsStage.Designer.cs">
+      <DependentUpon>TransactionsStage.cs</DependentUpon>
+    </Compile>
     <Compile Include="UsersStage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +179,12 @@
     </Compile>
     <EmbeddedResource Include="BooksStage.resx">
       <DependentUpon>BooksStage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BorrowerInfoStage.resx">
+      <DependentUpon>BorrowerInfoStage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PaymentStage.resx">
+      <DependentUpon>PaymentStage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FaqsStage.resx">
       <DependentUpon>FaqsStage.cs</DependentUpon>
@@ -179,6 +208,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="SignUpStage.resx">
       <DependentUpon>SignUpStage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TransactionsStage.resx">
+      <DependentUpon>TransactionsStage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UsersStage.resx">
       <DependentUpon>UsersStage.cs</DependentUpon>
@@ -204,6 +236,17 @@
     </None>
     <None Include="LocalDataBaseAllBooksDataSet.xss">
       <DependentUpon>LocalDataBaseAllBooksDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LocalDataBaseAllBorrowedBooksDataSet.xsc">
+      <DependentUpon>LocalDataBaseAllBorrowedBooksDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LocalDataBaseAllBorrowedBooksDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LocalDataBaseAllBorrowedBooksDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LocalDataBaseAllBorrowedBooksDataSet.xss">
+      <DependentUpon>LocalDataBaseAllBorrowedBooksDataSet.xsd</DependentUpon>
     </None>
     <None Include="LocalDataBaseAllQuestionsDataSet.xsc">
       <DependentUpon>LocalDataBaseAllQuestionsDataSet.xsd</DependentUpon>
@@ -282,6 +325,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>LocalDataBaseAllBooks.mdf</DependentUpon>
     </Content>
+    <Content Include="LocalDataBaseAllBorrowedBooks.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalDataBaseAllBorrowedBooks_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>LocalDataBaseAllBorrowedBooks.mdf</DependentUpon>
+    </Content>
     <Content Include="LocalDataBaseAllQuestions.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -289,6 +339,14 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>LocalDataBaseAllQuestions.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\payment-method %281%29.png" />
+    <None Include="Resources\payment-method.png" />
+    <None Include="Resources\information-button.png" />
+    <None Include="Resources\grocery-store %281%29.png" />
+    <None Include="Resources\grocery-store.png" />
+    <None Include="Resources\transaction %282%29.png" />
+    <None Include="Resources\transaction %281%29.png" />
+    <None Include="Resources\transaction32px.png" />
     <None Include="Resources\OpenBook32px.png" />
     <None Include="Resources\BooksStage32px.png" />
     <None Include="Resources\Faqs32px.png" />

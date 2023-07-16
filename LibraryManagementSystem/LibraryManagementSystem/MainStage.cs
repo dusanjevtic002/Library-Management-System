@@ -75,6 +75,13 @@ namespace LibraryManagementSystem
             booksStage.Show();
         }
 
+        private void btnTransactions_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            TransactionsStage transactionsStage = TransactionsStage.getInstance();
+            transactionsStage.Show();
+        }
+
         public static MainStage getInstance()
         {
             if (instance == null)

@@ -28,13 +28,14 @@ namespace LibraryManagementSystem
             NoticeStage noticeStage = NoticeStage.getInstance();
             FaqsStage faqsStage = FaqsStage.getInstance();
             BooksStage booksStage = BooksStage.getInstance();
-
+            TransactionsStage transactionsStage = TransactionsStage.getInstance();
 
             mainStage.setTheme1MainStage();
             usersStage.setTheme1UsersStage();
             noticeStage.setTheme1NoticeStage();
             faqsStage.setTheme1FaqsStage();
             booksStage.setTheme1BooksStage();
+            transactionsStage.setTheme1TransactionsStage();
         }
 
         private void btnSetTheme2_Click(object sender, EventArgs e)
@@ -45,12 +46,14 @@ namespace LibraryManagementSystem
             NoticeStage noticeStage = NoticeStage.getInstance();
             FaqsStage faqsStage = FaqsStage.getInstance();
             BooksStage booksStage = BooksStage.getInstance();
+            TransactionsStage transactionsStage = TransactionsStage.getInstance();
 
             mainStage.setTheme2MainStage();
             usersStage.setTheme2UsersStage();
             noticeStage.setTheme2NoticeStage();
             faqsStage.setTheme2FaqsStage();
             booksStage.setTheme2BooksStage();
+            transactionsStage.setTheme2TransactionsStage();
         }
 
         private void setTheme1SettingsStage()
