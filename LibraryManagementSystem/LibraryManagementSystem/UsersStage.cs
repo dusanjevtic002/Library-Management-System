@@ -1,13 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
@@ -25,6 +20,13 @@ namespace LibraryManagementSystem
             loadUsers();
             adjustTextBoxes();
             adjustDataGrid();
+            adjustComboBoxGender();
+        }
+
+        private void adjustComboBoxGender()
+        {
+            this.comboBoxGenderU.DropDownStyle = ComboBoxStyle.DropDownList;
+            this.comboBoxGenderU.SelectedIndex = 0;
         }
 
         private void adjustDataGrid()
@@ -152,12 +154,12 @@ namespace LibraryManagementSystem
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dgvUsers.Rows[e.RowIndex];
-                txtBoxEmployeeID.Text = row.Cells["Employee ID"].Value.ToString();
-                txtBoxFirstNameU.Text = row.Cells["First Name"].Value.ToString();
-                txtBoxLastNameU.Text = row.Cells["Last Name"].Value.ToString();
-                comboBoxGenderU.Text = row.Cells["Gender"].Value.ToString();
-                txtBoxEmailU.Text = row.Cells["Email"].Value.ToString();
-                txtBoxPasswordU.Text = row.Cells["Password"].Value.ToString();
+                this.txtBoxEmployeeID.Text = row.Cells["Employee ID"].Value.ToString();
+                this.txtBoxFirstNameU.Text = row.Cells["First Name"].Value.ToString();
+                this.txtBoxLastNameU.Text = row.Cells["Last Name"].Value.ToString();
+                this.comboBoxGenderU.Text = row.Cells["Gender"].Value.ToString();
+                this.txtBoxEmailU.Text = row.Cells["Email"].Value.ToString();
+                this.txtBoxPasswordU.Text = row.Cells["Password"].Value.ToString();
             }
         }
 

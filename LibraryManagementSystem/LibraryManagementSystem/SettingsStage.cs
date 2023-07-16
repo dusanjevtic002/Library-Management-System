@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
@@ -33,11 +27,14 @@ namespace LibraryManagementSystem
             UsersStage usersStage = UsersStage.getInstance();
             NoticeStage noticeStage = NoticeStage.getInstance();
             FaqsStage faqsStage = FaqsStage.getInstance();
+            BooksStage booksStage = BooksStage.getInstance();
+
 
             mainStage.setTheme1MainStage();
             usersStage.setTheme1UsersStage();
             noticeStage.setTheme1NoticeStage();
             faqsStage.setTheme1FaqsStage();
+            booksStage.setTheme1BooksStage();
         }
 
         private void btnSetTheme2_Click(object sender, EventArgs e)
@@ -47,11 +44,13 @@ namespace LibraryManagementSystem
             UsersStage usersStage = UsersStage.getInstance();
             NoticeStage noticeStage = NoticeStage.getInstance();
             FaqsStage faqsStage = FaqsStage.getInstance();
+            BooksStage booksStage = BooksStage.getInstance();
 
             mainStage.setTheme2MainStage();
             usersStage.setTheme2UsersStage();
             noticeStage.setTheme2NoticeStage();
             faqsStage.setTheme2FaqsStage();
+            booksStage.setTheme2BooksStage();
         }
 
         private void setTheme1SettingsStage()

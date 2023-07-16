@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Configuration;
-using System.Data;
-using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
@@ -76,6 +68,13 @@ namespace LibraryManagementSystem
             faqsStage.Show();
         }
 
+        private void btnBooks_Click(object sender, EventArgs e)
+        {
+            BooksStage booksStage = BooksStage.getInstance();
+            this.Hide();
+            booksStage.Show();
+        }
+
         public static MainStage getInstance()
         {
             if (instance == null)
@@ -83,6 +82,5 @@ namespace LibraryManagementSystem
 
             return instance;
         }
-  
     }
 }

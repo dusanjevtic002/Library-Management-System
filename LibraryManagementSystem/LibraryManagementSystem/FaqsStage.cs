@@ -1,13 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
@@ -78,9 +74,9 @@ namespace LibraryManagementSystem
                 BindingSource bSource = new BindingSource();
 
                 bSource.DataSource = dbDataSet;
-                dgvAllQuestions.DataSource = dbDataSet;
+                this.dgvAllQuestions.DataSource = dbDataSet;
                 sda.Update(dbDataSet);
-                dgvAllQuestions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                this.dgvAllQuestions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             }
 
             catch (Exception exception)
@@ -218,6 +214,75 @@ namespace LibraryManagementSystem
         private void FaqsStage_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
+        }
+
+        private String fillPrintDocument()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("*******************************************************************************************\n");
+            sb.Append("*********************              Frequently asked questions                **************************\n");
+            sb.Append("*******************************************************************************************\n\n");
+
+
+            try
+            {
+                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllQuestionsConnectionString"].ConnectionString;
+                String query = "SELECT * FROM LBAllQuestions";
+
+                SqlConnection con = new SqlConnection(connectionString);
+                SqlCommand cmd = new SqlCommand(query, con);
+                con.Open();
+
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                int questionCounter = 1;
+
+                while (reader.Read())
+                {
+                    for(int i = 0; i < reader.FieldCount; i++)
+                    {
+                        String toAdd = null;
+
+                        //Samo kolona 0 nema string vrednost tako da nju ne zelimo ni da gledamo, vec gledamo sve ostale
+                        if (i != 0)
+                            toAdd = reader.GetString(i);
+
+                        //imamo dve kolone u redu, pitanje ce uvek biti u koloni 1, odnosno reader ce dobiti vrednost pitanja kada je i = 1
+                        if (i == 1)
+                            sb.Append(questionCounter++ + ". " + "Question: " + toAdd + "\n");
+
+                        else if(i == 2)
+                            sb.Append("Answer: " + toAdd + "\n\n");
+                    }
+                }
+            }
+
+            catch(Exception exception)
+            {
+                MessageBox.Show(exception.Message);
+            }
+
+            return sb.ToString();
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawString(fillPrintDocument(), new Font("Microsoft Sans Serif", 18, FontStyle.Regular), Brushes.Black, new Point(10, 10));
+
+        }
+
+        private void adjustPrintDialog()
+        {
+            this.printPreviewDialog.Width = 1200;
+            this.printPreviewDialog.Height = 750;
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            this.printPreviewDialog.Document = printDocument;
+            adjustPrintDialog();
+
+            this.printPreviewDialog.Show();
         }
 
         public static FaqsStage getInstance()

@@ -11,8 +11,13 @@ Datum: 15.7.2023.
 			2. Dodati bazu podataka za knjige
 			3. Dodati implementaciju za print dugme u okviru "Faqs" stage-a
 			4. Podesiti Settings stage tako da se tema aplicira i na "Books" stage
-			5. Eventualno dodati nešto na "MainStage", s obzirom da je dosta prazan.
+			5. Eventualno dodati nešto na "MainStage", s obzirom da je dosta prazan. (Nije odradjeno)
 			
 
 ________________________________________________________________________________________________________________________________________________
-	
+Datum: 16.7.2023.
+		  Aktivnosti:
+			1. Planirano do kraja dana realizovati "Transactions-stage"
+			2. Dodati bazu podataka u koju će se pomerati knjige koje su pozajmljene
+			3. Realizovati ceo proces transakcije i prodaje knjiga
+			4. Podesiti imena promenljivih u svim klasama, pošto postoji nekonzistentnost.

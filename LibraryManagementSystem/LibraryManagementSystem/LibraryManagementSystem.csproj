@@ -89,6 +89,12 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BooksStage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BooksStage.Designer.cs">
+      <DependentUpon>BooksStage.cs</DependentUpon>
+    </Compile>
     <Compile Include="FaqsStage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>LocalDatabaseAllAccountsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="LocalDataBaseAllBooksDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>LocalDataBaseAllBooksDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="LocalDataBaseAllQuestionsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -143,6 +154,9 @@
     <Compile Include="UsersStage.Designer.cs">
       <DependentUpon>UsersStage.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="BooksStage.resx">
+      <DependentUpon>BooksStage.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FaqsStage.resx">
       <DependentUpon>FaqsStage.cs</DependentUpon>
     </EmbeddedResource>
@@ -179,6 +193,17 @@
     </None>
     <None Include="LocalDatabaseAllAccountsDataSet.xss">
       <DependentUpon>LocalDatabaseAllAccountsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LocalDataBaseAllBooksDataSet.xsc">
+      <DependentUpon>LocalDataBaseAllBooksDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="LocalDataBaseAllBooksDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>LocalDataBaseAllBooksDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="LocalDataBaseAllBooksDataSet.xss">
+      <DependentUpon>LocalDataBaseAllBooksDataSet.xsd</DependentUpon>
     </None>
     <None Include="LocalDataBaseAllQuestionsDataSet.xsc">
       <DependentUpon>LocalDataBaseAllQuestionsDataSet.xsd</DependentUpon>
@@ -250,6 +275,13 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>LocalDatabaseAllAccounts.mdf</DependentUpon>
     </Content>
+    <Content Include="LocalDataBaseAllBooks.mdf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="LocalDataBaseAllBooks_log.ldf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <DependentUpon>LocalDataBaseAllBooks.mdf</DependentUpon>
+    </Content>
     <Content Include="LocalDataBaseAllQuestions.mdf">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -257,6 +289,8 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <DependentUpon>LocalDataBaseAllQuestions.mdf</DependentUpon>
     </Content>
+    <None Include="Resources\OpenBook32px.png" />
+    <None Include="Resources\BooksStage32px.png" />
     <None Include="Resources\Faqs32px.png" />
     <None Include="Resources\Notice32px.png" />
     <None Include="Resources\Option2.jpg" />

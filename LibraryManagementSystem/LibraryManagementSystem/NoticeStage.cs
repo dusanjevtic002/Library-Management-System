@@ -1,11 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
@@ -136,18 +130,24 @@ namespace LibraryManagementSystem
             e.Graphics.DrawString(rTBoxLargeArea.Text, new Font("Microsoft Sans Serif", 18, FontStyle.Regular), Brushes.Black, new Point(10, 10));
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-           this.printPreviewDialog1.Document = printDocument1;
-            adjustPrintDialog();
-
-           this.printPreviewDialog1.Show();
-        }
-
         private void adjustPrintDialog()
         {
             this.printPreviewDialog1.Width = 1200;
             this.printPreviewDialog1.Height = 750;
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+           if(String.IsNullOrWhiteSpace(this.rTBoxLargeArea.Text))
+                MessageBox.Show("Large text area is empty, please fill text boxes and click generate button", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+           else
+            {
+                this.printPreviewDialog1.Document = printDocument1;
+                adjustPrintDialog();
+
+                this.printPreviewDialog1.Show();
+            }
         }
 
         public static NoticeStage getInstance()

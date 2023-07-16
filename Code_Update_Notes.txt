@@ -35,3 +35,23 @@ Nove stvari:
 
 
 ______________________________________________________________________________________________________________________________________________________________________
+Vreme ažuriranja ( 04:00h 16.07.2023.)
+
+Nove stvari:
+	· Promena u klasi UsersStage, dodata metoda "adjustComboBoxGender", koja omogućava da je combo box read only
+
+	· U svim klasama su uklonjeni suvišni namespace-ovi
+
+	· Promena u klasi NoticeStage, promenjena je metoda "btnPrint_Click"
+		Dešavao se problem pri pokušaju printa kada je richtextbox prazan, a ako bi ponovo kliknuli generate koji popunjava richtextbox, pa zatim opet print
+		program bi pucao. Taj problem je popravljen uz pomoć if-else kondicionala.
+
+	· BooksStage, celokupan novi stage, koji se otvara iz MainStage-a
+	
+	· Dodata baza podataka za knjige "LocalDataBaseAllBooks"
+	
+	· Promena u klasi SignUpStage, promenjena implementacija metode "adjustCounter", ova implementacija će osigurati 
+	  da se uvek uzme najveci Id iz tabele što će osigurati veću sigurnost od pucanja u odnosu na prethodnu implementaciju
+	  pogotovo ako budemo želeli da dodamo mogućnost brisanja naloga u budućnosti.
+	
+	· Promena u SettingsStage-u, odnosno teme će se primenjivati i na novonastalom stage-u "BooksStage"

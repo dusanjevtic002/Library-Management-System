@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
 using System.Data.SqlClient;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
@@ -72,13 +65,19 @@ namespace LibraryManagementSystem
             SqlConnection con = new SqlConnection(connectionString);
             con.Open();
 
-            string query = "SELECT COUNT(*) FROM LBAllAccountsTable";
+            //Query ce proci kroz bazu i vratice najveci id knjige
+            string query = "SELECT MAX(Id) FROM LBAllAccountsTable";
             SqlCommand command = new SqlCommand(query, con);
 
-            int count = (int)command.ExecuteScalar();
+            //Izvrsava se komanda nad LBAllBooks i vraca se prva kolona rezultata, u toj prvoj koloni je moj rezultat
+            //Result je tipa object jer povratna vrednost moze biti NULL
+            object result = command.ExecuteScalar();
 
-            if (count > 0)
-                counter = count + 1;
+            if (result != DBNull.Value)
+                counter = Convert.ToInt32(result) + 1;
+
+            else
+                counter = 1;
         }
 
         private void btnSignUp_Click(object sender, EventArgs e)
