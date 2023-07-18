@@ -11,6 +11,10 @@ namespace LibraryManagementSystem
     {
         private static SignInStage instance;
         private static String fileName = "accounts.txt";
+        private static String fileName2 = "books.txt";
+        private static String fileName3 = "filteredBooks.txt";
+        private static String fileName4 = "borrowedBooks.txt";
+        private static String fileName5 = "faqs.txt";
         private SignInStage()
         {
             InitializeComponent();
@@ -21,6 +25,34 @@ namespace LibraryManagementSystem
             adjustLblLibrarySystem();
             adjustTxtBoxPassword();
             adjustLinkLblSignUp();
+            checkFiles();
+        }
+
+        private void checkFiles()
+        {
+            if(!File.Exists(fileName) && !File.Exists(fileName2) && !File.Exists(fileName3) && !File.Exists(fileName4) && !File.Exists(fileName5))
+            {
+                StreamWriter sw = new StreamWriter(fileName);
+                sw.WriteLine("FirstName,LastName,Gender,Email,Password");
+                sw.Close();
+
+                sw = new StreamWriter(fileName2);
+                sw.WriteLine("Name,Author,Publisher,Genre,Quantity,Availability,Price");
+                sw.Close();
+
+                sw = new StreamWriter(fileName3);
+                sw.WriteLine("Name,Author,Publisher,Genre,Quantity,Availability,Price");
+                sw.Close();
+
+                sw = new StreamWriter(fileName4);
+                sw.WriteLine("Borrower contact,Book name,Author,Genre,Borrow date,Return date");
+                sw.Close();
+
+                sw = new StreamWriter(fileName5);
+                sw.WriteLine("Question,Answer");
+                sw.Close();
+
+            }
         }
 
         private void searchTxtFile(String email, String password)
