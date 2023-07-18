@@ -1,4 +1,0 @@
-Question,Answer
-asd,asd
-qwe,qwe
-qwe2,qwe2

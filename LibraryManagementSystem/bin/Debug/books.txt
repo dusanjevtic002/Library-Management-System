@@ -1,8 +1,0 @@
-Name,Author,Publisher,Genre,Quantity,Availability,Price
-TestBook1,TestAuthor1,TestPublisher1,Psychology,98,Available,9
-TestBook3,TestAuthor3,TestPublisher3,Psychology,120,Available,9
-TestBook4,TestAuthor4,TestPublisher4,Philosophy,120,Available,12
-TestBook5,TestAuthor5,TestPublisher5,Philosophy,109,Available,12
-TestBook6,TestAuthor6,TestPublisher6,Horror,225,Available,14
-TestBook7,TestAuthor7,TestPublisher7,Thriller / Suspense,1232,Available,15
-a,a,a,Psychology,23,Available,5

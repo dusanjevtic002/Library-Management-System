@@ -1,5 +1,0 @@
-FirstName,LastName,Gender,Email,Password
-Isidora,Nikic,Female,isidora123@gmail.com,123
-Dusan,Jevtic,Male,dusanjevtic42@gmail.com,1234
-Maja,Jevtic,Male,maja123@gmail.com,1234
-TestName,TestUser,Male,test123@gmail.com,test
