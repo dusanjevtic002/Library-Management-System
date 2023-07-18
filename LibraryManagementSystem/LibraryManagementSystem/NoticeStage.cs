@@ -104,10 +104,10 @@ namespace LibraryManagementSystem
 
             this.rTBoxLargeArea.Text += "Title: " + this.txtBoxTitle.Text + "\n\n";
             this.rTBoxLargeArea.Text += "Category: " + this.cBoxCategory.Text + "\n\n";
-            this.rTBoxLargeArea.Text += "Start date: " + this.dtpStartDate.Value.ToString() + "\n\n";
+            this.rTBoxLargeArea.Text += "Start date: " + this.dtpStartDate.Value.ToString("dd/MM/yyyy") + "\n\n";
 
             if (rButtonIncludeDate.Checked)
-                this.rTBoxLargeArea.Text += "End date: " + this.dtpEndDate.Value.ToString() + "\n\n";
+                this.rTBoxLargeArea.Text += "End date: " + this.dtpEndDate.Value.ToString("dd/MM/yyyy") + "\n\n";
 
             else
                 this.rTBoxLargeArea.Text += "End date: until further notice\n\n";

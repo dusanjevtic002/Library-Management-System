@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -11,24 +13,17 @@ namespace LibraryManagementSystem
     public partial class FaqsStage : Form
     {
         private static FaqsStage instance;
-        private static int counter = 1;
+        private static String fileName = "faqs.txt";
         private FaqsStage()
         {
             InitializeComponent();
-            loadDataBase();
-            adjustTxtBoxQuestionSerialNo();
+            loadTxtFile();
             adjustDataGrid();
         }
 
         private void adjustDataGrid()
         {
             this.dgvAllQuestions.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-        }
-
-        private void adjustTxtBoxQuestionSerialNo()
-        {
-            this.txtBoxQuestionSerialNo.ReadOnly = true;
-            this.txtBoxQuestionSerialNo.Enabled = false;
         }
 
         public void setTheme1FaqsStage()
@@ -39,7 +34,6 @@ namespace LibraryManagementSystem
             this.lblAddQuestion.ForeColor = Color.Black;
             this.lblAnswer.ForeColor = Color.Black;
             this.lblFaqs.ForeColor = Color.Black;
-            this.lblQuestionSerialNo.ForeColor = Color.Black;
             this.lblTitleOfQuestion.ForeColor = Color.Black;
         }
 
@@ -51,38 +45,38 @@ namespace LibraryManagementSystem
             this.lblAddQuestion.ForeColor = Color.White;
             this.lblAnswer.ForeColor = Color.White;
             this.lblFaqs.ForeColor = Color.White;
-            this.lblQuestionSerialNo.ForeColor = Color.White;
             this.lblTitleOfQuestion.ForeColor = Color.White;
         }
 
-        private void loadDataBase()
+        private void loadTxtFile()
         {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Question");
+            dataTable.Columns.Add("Answer");
+
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllQuestionsConnectionString"].ConnectionString;
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand command = new SqlCommand("SELECT Id as 'Serial No.',  TitleOfQuestion as 'Title of question', Answer as 'Answer' FROM LBAllQuestions", connection);
+                String[] lines = File.ReadAllLines(fileName);
+                
+                for(int i = 1; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-                connection.Open();
+                    DataRow rowToAdd = dataTable.NewRow();
+                    rowToAdd["Question"] = elements[0];
+                    rowToAdd["Answer"] = elements[1];
 
-                SqlDataAdapter sda = new SqlDataAdapter();
-                sda.SelectCommand = command;
-
-                DataTable dbDataSet = new DataTable();
-                sda.Fill(dbDataSet);
-
-                BindingSource bSource = new BindingSource();
-
-                bSource.DataSource = dbDataSet;
-                this.dgvAllQuestions.DataSource = dbDataSet;
-                sda.Update(dbDataSet);
-                this.dgvAllQuestions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataTable.Rows.Add(rowToAdd);
+                }
             }
 
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message);
             }
+
+            this.dgvAllQuestions.DataSource = dataTable;
+            this.dgvAllQuestions.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -92,50 +86,24 @@ namespace LibraryManagementSystem
             mainStage.Show();
         }
 
-        //Resava problem sa jedinstvenim Id-jem
-        private void adjustCounter()
-        {
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllQuestionsConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(connectionString);
-            con.Open();
-
-            string query = "SELECT COUNT(*) FROM LBAllQuestions";
-            SqlCommand command = new SqlCommand(query, con);
-
-            int count = (int)command.ExecuteScalar();
-
-            //Ukoliko je baza prazna, znaci broj redova je 0, odnosno count = 0, samim tim nema svrhe povecavati counter
-            if (count > 0)
-                counter = count + 1;
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            adjustCounter();
 
             if(String.IsNullOrWhiteSpace(txtBoxTitleOfQuestion.Text) || (String.IsNullOrWhiteSpace(rTBoxAnswer.Text)))
                 MessageBox.Show("Invalid input!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             else
             {
+                String question = this.txtBoxTitleOfQuestion.Text;
+                String answer = this.rTBoxAnswer.Text;
+
                 try
                 {
-                    String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllQuestionsConnectionString"].ConnectionString; ;
-                    String insertSQL = "INSERT INTO LBAllQuestions (Id, TitleOfQuestion, Answer) VALUES (@Id, @TitleOfQuestion, @Answer)";
-                    // String deleteSQL = "DELETE FROM LBAllAccountsTable WHERE Id = @Id";
+                    StreamWriter faqsFile = File.AppendText(fileName);
+                    faqsFile.WriteLine(question + "," + answer);
+                    faqsFile.Close();
 
-                    SqlConnection con = new SqlConnection(connectionString);
-                    SqlCommand cmd = new SqlCommand(insertSQL, con);
-                    con.Open();
-
-                    cmd.Parameters.AddWithValue("@Id", counter++);
-                    cmd.Parameters.AddWithValue("@TitleOfQuestion", this.txtBoxTitleOfQuestion.Text);
-                    cmd.Parameters.AddWithValue("@Answer", this.rTBoxAnswer.Text);
-
-                    cmd.ExecuteNonQuery();
-
-                    MessageBox.Show("You have added question successfully!", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadDataBase();
+                    loadTxtFile();
                 }
 
                 catch (Exception exception)
@@ -147,23 +115,31 @@ namespace LibraryManagementSystem
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
+            DataGridViewRow selectedRow = dgvAllQuestions.SelectedRows[0];
+            String question = selectedRow.Cells["Question"].Value.ToString();
+            String answer = selectedRow.Cells["Answer"].Value.ToString();
+
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllQuestionsConnectionString"].ConnectionString;
-                String query = "UPDATE LBAllQuestions SET TitleOfQuestion=@TitleOfQuestion, Answer=@Answer WHERE Id=@Id";
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand(query, connection);
+                String[] lines = File.ReadAllLines(fileName);
 
-                connection.Open();
+                for(int i = 1; i < lines.Length; i++)
+                {
+                    String line = lines[i];
 
-                cmd.Parameters.AddWithValue("@TitleOfQuestion", this.txtBoxTitleOfQuestion.Text);
-                cmd.Parameters.AddWithValue("@Answer", this.rTBoxAnswer.Text);
-                cmd.Parameters.AddWithValue("@Id", this.txtBoxQuestionSerialNo.Text);
+                    String[] elements = line.Split(',');
+                    String questionToCheck = elements[0];
+                    String answerToCheck = elements[1];
 
-                cmd.ExecuteNonQuery();
-
-                MessageBox.Show("You have updated this question successfully");
-                loadDataBase();
+                    if(questionToCheck.Equals(question) && answerToCheck.Equals(answer))
+                    {
+                        lines[i] = this.txtBoxTitleOfQuestion.Text + "," + this.rTBoxAnswer.Text;
+                        File.WriteAllLines(fileName, lines);
+                        break;
+                    }
+                }
+                
+                loadTxtFile();
             }
 
             catch (Exception exception)
@@ -174,25 +150,27 @@ namespace LibraryManagementSystem
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            DataGridViewRow selectedRow = dgvAllQuestions.SelectedRows[0];
+            String question = selectedRow.Cells["Question"].Value.ToString();
+            String answer = selectedRow.Cells["Answer"].Value.ToString();
+
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllQuestionsConnectionString"].ConnectionString;
-                string deleteQuery = "DELETE FROM LBAllQuestions WHERE Id = @Id";
+                String[] lines = File.ReadAllLines(fileName);
+                List<String> newLines = new List<String>();
 
-                SqlConnection con = new SqlConnection(connectionString);
-                con.Open();
+                for(int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //Ako je uslov ispunjen znaci da sam naisao na liniju koju necu da brisem i nju cu dodati u novi sadrzaj, ako sam naisao na tu liniju preskacem je
+                    if (!(elements[0].Equals(question) && elements[1].Equals(answer)))
+                        newLines.Add(lines[i]);
+                }
 
-                SqlCommand cmd = new SqlCommand(deleteQuery, con);
-                cmd.Parameters.AddWithValue("@Id", this.txtBoxQuestionSerialNo.Text);
-
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("You have deleted this question successfully");
-                loadDataBase();
-
-                this.txtBoxQuestionSerialNo.Text = "";
-                this.txtBoxTitleOfQuestion.Text = "";
-                this.rTBoxAnswer.Text = "";
+                File.WriteAllLines(fileName, newLines);
+                loadTxtFile();
             }
+
 
             catch(Exception exception)
             {
@@ -205,8 +183,7 @@ namespace LibraryManagementSystem
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dgvAllQuestions.Rows[e.RowIndex];
-                this.txtBoxQuestionSerialNo.Text = row.Cells["Serial No."].Value.ToString();
-                this.txtBoxTitleOfQuestion.Text = row.Cells["Title of question"].Value.ToString();
+                this.txtBoxTitleOfQuestion.Text = row.Cells["Question"].Value.ToString();
                 this.rTBoxAnswer.Text = row.Cells["Answer"].Value.ToString();
             }
         }
@@ -223,37 +200,16 @@ namespace LibraryManagementSystem
             sb.Append("*********************              Frequently asked questions                **************************\n");
             sb.Append("*******************************************************************************************\n\n");
 
-
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllQuestionsConnectionString"].ConnectionString;
-                String query = "SELECT * FROM LBAllQuestions";
+                String[] lines = File.ReadAllLines(fileName);
 
-                SqlConnection con = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand(query, con);
-                con.Open();
-
-                SqlDataReader reader = cmd.ExecuteReader();
-
-                int questionCounter = 1;
-
-                while (reader.Read())
+                for(int i = 1; i < lines.Length; i++)
                 {
-                    for(int i = 0; i < reader.FieldCount; i++)
-                    {
-                        String toAdd = null;
+                    String[] elements = lines[i].Split(',');
 
-                        //Samo kolona 0 nema string vrednost tako da nju ne zelimo ni da gledamo, vec gledamo sve ostale
-                        if (i != 0)
-                            toAdd = reader.GetString(i);
-
-                        //imamo dve kolone u redu, pitanje ce uvek biti u koloni 1, odnosno reader ce dobiti vrednost pitanja kada je i = 1
-                        if (i == 1)
-                            sb.Append(questionCounter++ + ". " + "Question: " + toAdd + "\n");
-
-                        else if(i == 2)
-                            sb.Append("Answer: " + toAdd + "\n\n");
-                    }
+                    sb.Append(i + ". Question: " + elements[0] + "\n");
+                    sb.Append("    Answer: " + elements[1] + "\n\n");
                 }
             }
 

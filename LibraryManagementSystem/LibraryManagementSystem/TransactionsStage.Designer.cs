@@ -32,6 +32,7 @@
             this.panelHeaderTransactions = new System.Windows.Forms.Panel();
             this.btnBack = new System.Windows.Forms.Button();
             this.lblTransactions = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvBooks = new System.Windows.Forms.DataGridView();
             this.dgvBorrowedBooks = new System.Windows.Forms.DataGridView();
             this.lblSearch = new System.Windows.Forms.Label();
@@ -51,12 +52,12 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnClearFilters = new System.Windows.Forms.Button();
             this.cartBtn = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnRefreshTable = new System.Windows.Forms.Button();
             this.panelHeaderTransactions.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedBooks)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartBtn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeaderTransactions
@@ -90,6 +91,16 @@
             this.lblTransactions.Size = new System.Drawing.Size(147, 29);
             this.lblTransactions.TabIndex = 1;
             this.lblTransactions.Text = "Transactions";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.transaction__2_;
+            this.pictureBox1.Location = new System.Drawing.Point(461, 4);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(55, 54);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // dgvBooks
             // 
@@ -146,7 +157,7 @@
             // btnAddToCart
             // 
             this.btnAddToCart.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAddToCart.Location = new System.Drawing.Point(152, 662);
+            this.btnAddToCart.Location = new System.Drawing.Point(231, 662);
             this.btnAddToCart.Name = "btnAddToCart";
             this.btnAddToCart.Size = new System.Drawing.Size(142, 37);
             this.btnAddToCart.TabIndex = 7;
@@ -157,7 +168,7 @@
             // btnBorrow
             // 
             this.btnBorrow.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBorrow.Location = new System.Drawing.Point(300, 662);
+            this.btnBorrow.Location = new System.Drawing.Point(379, 662);
             this.btnBorrow.Name = "btnBorrow";
             this.btnBorrow.Size = new System.Drawing.Size(142, 37);
             this.btnBorrow.TabIndex = 8;
@@ -279,15 +290,16 @@
             this.cartBtn.TabStop = false;
             this.cartBtn.Click += new System.EventHandler(this.cartBtn_Click);
             // 
-            // pictureBox1
+            // btnRefreshTable
             // 
-            this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.transaction__2_;
-            this.pictureBox1.Location = new System.Drawing.Point(461, 4);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(55, 54);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.btnRefreshTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefreshTable.Location = new System.Drawing.Point(83, 662);
+            this.btnRefreshTable.Name = "btnRefreshTable";
+            this.btnRefreshTable.Size = new System.Drawing.Size(142, 37);
+            this.btnRefreshTable.TabIndex = 21;
+            this.btnRefreshTable.Text = "Refresh table";
+            this.btnRefreshTable.UseVisualStyleBackColor = true;
+            this.btnRefreshTable.Click += new System.EventHandler(this.btnRefreshTable_Click);
             // 
             // TransactionsStage
             // 
@@ -295,6 +307,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1184, 711);
+            this.Controls.Add(this.btnRefreshTable);
             this.Controls.Add(this.btnClearFilters);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.lblAvailability);
@@ -323,10 +336,10 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TransactionsStage_FormClosing);
             this.panelHeaderTransactions.ResumeLayout(false);
             this.panelHeaderTransactions.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedBooks)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cartBtn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -357,5 +370,6 @@
         private System.Windows.Forms.Label lblAvailability;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnClearFilters;
+        private System.Windows.Forms.Button btnRefreshTable;
     }
 }

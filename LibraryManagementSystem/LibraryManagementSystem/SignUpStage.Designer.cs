@@ -33,7 +33,6 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lBAllAccountsTableBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.localDatabaseAllAccountsDataSet = new LibraryManagementSystem.LocalDatabaseAllAccountsDataSet();
             this.btnBack = new System.Windows.Forms.Button();
             this.cBoxShowPassword = new System.Windows.Forms.CheckBox();
             this.btnSignUp = new System.Windows.Forms.Button();
@@ -51,12 +50,9 @@
             this.lblFirstName = new System.Windows.Forms.Label();
             this.lblSignUp = new System.Windows.Forms.Label();
             this.pBoxIconSignUp = new System.Windows.Forms.PictureBox();
-            this.lBAllAccountsTableTableAdapter = new LibraryManagementSystem.LocalDatabaseAllAccountsDataSetTableAdapters.LBAllAccountsTableTableAdapter();
-            this.tableAdapterManager = new LibraryManagementSystem.LocalDatabaseAllAccountsDataSetTableAdapters.TableAdapterManager();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.lBAllAccountsTableBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.localDatabaseAllAccountsDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pBoxIconSignUp)).BeginInit();
             this.SuspendLayout();
             // 
@@ -97,16 +93,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(365, 442);
             this.panel1.TabIndex = 1;
-            // 
-            // lBAllAccountsTableBindingSource
-            // 
-            this.lBAllAccountsTableBindingSource.DataMember = "LBAllAccountsTable";
-            this.lBAllAccountsTableBindingSource.DataSource = this.localDatabaseAllAccountsDataSet;
-            // 
-            // localDatabaseAllAccountsDataSet
-            // 
-            this.localDatabaseAllAccountsDataSet.DataSetName = "LocalDatabaseAllAccountsDataSet";
-            this.localDatabaseAllAccountsDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnBack
             // 
@@ -261,16 +247,6 @@
             this.pBoxIconSignUp.TabIndex = 0;
             this.pBoxIconSignUp.TabStop = false;
             // 
-            // lBAllAccountsTableTableAdapter
-            // 
-            this.lBAllAccountsTableTableAdapter.ClearBeforeFill = true;
-            // 
-            // tableAdapterManager
-            // 
-            this.tableAdapterManager.BackupDataSetBeforeUpdate = false;
-            this.tableAdapterManager.LBAllAccountsTableTableAdapter = this.lBAllAccountsTableTableAdapter;
-            this.tableAdapterManager.UpdateOrder = LibraryManagementSystem.LocalDatabaseAllAccountsDataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete;
-            // 
             // SignUpStage
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -287,9 +263,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.lBAllAccountsTableBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.localDatabaseAllAccountsDataSet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pBoxIconSignUp)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -315,9 +288,7 @@
         private System.Windows.Forms.Button btnSignUp;
         private System.Windows.Forms.CheckBox cBoxShowPassword;
         private System.Windows.Forms.Button btnBack;
-        private LocalDatabaseAllAccountsDataSet localDatabaseAllAccountsDataSet;
+
         private System.Windows.Forms.BindingSource lBAllAccountsTableBindingSource;
-        private LocalDatabaseAllAccountsDataSetTableAdapters.LBAllAccountsTableTableAdapter lBAllAccountsTableTableAdapter;
-        private LocalDatabaseAllAccountsDataSetTableAdapters.TableAdapterManager tableAdapterManager;
     }
 }

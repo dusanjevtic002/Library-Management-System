@@ -113,26 +113,6 @@
     <Compile Include="FaqsStage.Designer.cs">
       <DependentUpon>FaqsStage.cs</DependentUpon>
     </Compile>
-    <Compile Include="LocalDatabaseAllAccountsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalDatabaseAllAccountsDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="LocalDataBaseAllBooksDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalDataBaseAllBooksDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="LocalDataBaseAllBorrowedBooksDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalDataBaseAllBorrowedBooksDataSet.xsd</DependentUpon>
-    </Compile>
-    <Compile Include="LocalDataBaseAllQuestionsDataSet.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>LocalDataBaseAllQuestionsDataSet.xsd</DependentUpon>
-    </Compile>
     <Compile Include="MainStage.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -215,50 +195,6 @@
     <EmbeddedResource Include="UsersStage.resx">
       <DependentUpon>UsersStage.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="LocalDatabaseAllAccountsDataSet.xsc">
-      <DependentUpon>LocalDatabaseAllAccountsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalDatabaseAllAccountsDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LocalDatabaseAllAccountsDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="LocalDatabaseAllAccountsDataSet.xss">
-      <DependentUpon>LocalDatabaseAllAccountsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalDataBaseAllBooksDataSet.xsc">
-      <DependentUpon>LocalDataBaseAllBooksDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalDataBaseAllBooksDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LocalDataBaseAllBooksDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="LocalDataBaseAllBooksDataSet.xss">
-      <DependentUpon>LocalDataBaseAllBooksDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalDataBaseAllBorrowedBooksDataSet.xsc">
-      <DependentUpon>LocalDataBaseAllBorrowedBooksDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalDataBaseAllBorrowedBooksDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LocalDataBaseAllBorrowedBooksDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="LocalDataBaseAllBorrowedBooksDataSet.xss">
-      <DependentUpon>LocalDataBaseAllBorrowedBooksDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalDataBaseAllQuestionsDataSet.xsc">
-      <DependentUpon>LocalDataBaseAllQuestionsDataSet.xsd</DependentUpon>
-    </None>
-    <None Include="LocalDataBaseAllQuestionsDataSet.xsd">
-      <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>LocalDataBaseAllQuestionsDataSet.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="LocalDataBaseAllQuestionsDataSet.xss">
-      <DependentUpon>LocalDataBaseAllQuestionsDataSet.xsd</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -311,34 +247,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="LocalDatabaseAllAccounts.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="LocalDatabaseAllAccounts_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>LocalDatabaseAllAccounts.mdf</DependentUpon>
-    </Content>
-    <Content Include="LocalDataBaseAllBooks.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="LocalDataBaseAllBooks_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>LocalDataBaseAllBooks.mdf</DependentUpon>
-    </Content>
-    <Content Include="LocalDataBaseAllBorrowedBooks.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="LocalDataBaseAllBorrowedBooks_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>LocalDataBaseAllBorrowedBooks.mdf</DependentUpon>
-    </Content>
-    <Content Include="LocalDataBaseAllQuestions.mdf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="LocalDataBaseAllQuestions_log.ldf">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      <DependentUpon>LocalDataBaseAllQuestions.mdf</DependentUpon>
-    </Content>
     <None Include="Resources\payment-method %281%29.png" />
     <None Include="Resources\payment-method.png" />
     <None Include="Resources\information-button.png" />

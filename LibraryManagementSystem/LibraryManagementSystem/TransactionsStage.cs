@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
@@ -10,13 +12,17 @@ namespace LibraryManagementSystem
     public partial class TransactionsStage : Form
     {
         private static TransactionsStage instance;
-        private static int counter = 0;
+        private static int counter = 0; //Brojac koji broji broj stvari u kolicima
+
+        private static String fileName = "books.txt";
+        private static String fileName2 = "filteredBooks.txt";
+        private static String fileName3 = "borrowedBooks.txt";
 
         private TransactionsStage()
         {
             InitializeComponent();
-            loadDataBaseBooks();
-            loadDataBaseBorrowedBooks();
+            loadTxtFileBooks(fileName);
+            loadTxtFileBorrowedBooks();
             adjustComboBoxes();
             adjustDataGrid();
         }
@@ -49,30 +55,39 @@ namespace LibraryManagementSystem
             this.lblTransactions.ForeColor = Color.White;
         }
 
-        //Metoda kojom ucitavam bazu podataka gde su smestene sve knjige
-        private void loadDataBaseBooks()
+        //Metoda kao parametar ima fileName, iz razloga sto cu uvek prosledjivati ono sto zelim da prikazem, dakle ili sve knjige ili filtrirane knjige
+        private void loadTxtFileBooks(String fileToAdd)
         {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Name");
+            dataTable.Columns.Add("Author");
+            dataTable.Columns.Add("Publisher");
+            dataTable.Columns.Add("Genre");
+            dataTable.Columns.Add("Quantity");
+            dataTable.Columns.Add("Availability");
+            dataTable.Columns.Add("Price ($)");
+
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString;
-                SqlConnection con = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand("SELECT * FROM LBAllBooks", con);
+                String[] lines = File.ReadAllLines(fileToAdd);
 
-                con.Open();
+                for(int i = 1; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-                SqlDataAdapter sda = new SqlDataAdapter();
-                sda.SelectCommand = cmd;
+                    DataRow rowToAdd = dataTable.NewRow();
+                    rowToAdd["Name"] = elements[0];
+                    rowToAdd["Author"] = elements[1];
+                    rowToAdd["Publisher"] = elements[2];
+                    rowToAdd["Genre"] = elements[3];
+                    rowToAdd["Quantity"] = elements[4];
+                    rowToAdd["Availability"] = elements[5];
+                    rowToAdd["Price ($)"] = elements[6];
 
-                DataTable dbDataSet = new DataTable();
-                sda.Fill(dbDataSet);
+                    dataTable.Rows.Add(rowToAdd);
+                }
 
-                BindingSource bSource = new BindingSource();
-
-                bSource.DataSource = dbDataSet;
-                this.dgvBooks.DataSource = dbDataSet;
-                sda.Update(dbDataSet);
-                this.dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+                this.dgvBooks.DataSource = dataTable;
             }
 
             catch (Exception e)
@@ -84,20 +99,25 @@ namespace LibraryManagementSystem
         //Metoda kojom smanjujem kolicinu neke knjige kada je nekom iznajmim
         public void reduceQuantityDataBaseBooks(String bookName, String quantity)
         {
+            int quantityValue = int.Parse(quantity) - 1;
+
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString;
-                String query = "UPDATE LBAllBooks SET Quantity=@UpdatedQuantity WHERE Name=@BookName";
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand(query, connection);
+                String[] lines = File.ReadAllLines(fileName);
 
-                connection.Open();
+                for(int i = 1; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-                cmd.Parameters.AddWithValue("@UpdatedQuantity", int.Parse(quantity) - 1);
-                cmd.Parameters.AddWithValue("@BookName", bookName);
+                    if(elements[0].Equals(bookName))
+                    {
+                        lines[i] = elements[0] + "," + elements[1] + "," + elements[2] + "," + elements[3] + "," + quantityValue + "," + elements[5] + "," + elements[6];
+                        File.WriteAllLines(fileName, lines);
+                        break;
+                    }
+                }
 
-                cmd.ExecuteNonQuery();
-                loadDataBaseBooks();
+                loadTxtFileBooks(fileName);
             }
 
             catch (Exception exception)
@@ -111,27 +131,20 @@ namespace LibraryManagementSystem
         {//Trazim knjigu na osnovu njenog naziva, nakon toga uzimam kolicinu te knjige u biblioteci na osnovu njenog naziva, zatim inkrementiram kolicinu za 1
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString;
-                String searchQuery = "SELECT * FROM LBAllBooks WHERE Name = '" + bookName + "'";
+                String[] lines = File.ReadAllLines(fileName);
 
-                SqlConnection con = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand(searchQuery, con);
+                for(int i = 1; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    int quantityValue = int.Parse(elements[4]) + 1;
 
-                con.Open();
-
-                SqlDataReader reader = cmd.ExecuteReader(); //Izvrsio sam query, dobio sam trazenu knjigu odnosno objekat koji cu procitati
-                reader.Read(); //Citam red iz Baze, i nakon toga mogu da pristupim pojedinacno svakoj koloni
-                int quantity = reader.GetInt32(5);
-
-                reader.Close();
-
-                String updateQuery = "UPDATE LBAllBooks SET Quantity=@UpdatedQuantity WHERE Name=@BookName";
-                SqlCommand cmd2 = new SqlCommand(updateQuery, con);
-
-                cmd2.Parameters.AddWithValue("@UpdatedQuantity", quantity + 1);
-                cmd2.Parameters.AddWithValue("@BookName", bookName);
-
-                cmd2.ExecuteNonQuery();
+                    if(elements[0].Equals(bookName))
+                    {
+                        lines[i] = elements[0] + "," + elements[1] + "," + elements[2] + "," + elements[3] + "," + quantityValue + "," + elements[5] + "," + elements[6];
+                        File.WriteAllLines(fileName, lines);
+                        break;
+                    }
+                }
 
                 if(choice == 0)
                     MessageBox.Show("You have returned this book to the library successfully");
@@ -139,7 +152,7 @@ namespace LibraryManagementSystem
                 else if(choice == 1)
                     MessageBox.Show("You have cancelled the bill succesfully");
 
-                loadDataBaseBooks();
+                loadTxtFileBooks(fileName);
             }
 
             catch (Exception exception)
@@ -149,29 +162,34 @@ namespace LibraryManagementSystem
         }
 
         //Metoda kojom ucitavam bazu podataka u kojoj su podaci o pozajmljenim knjigama
-        public void loadDataBaseBorrowedBooks()
+        public void loadTxtFileBorrowedBooks()
         {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Borrower contact");
+            dataTable.Columns.Add("Book name");
+            dataTable.Columns.Add("Author");
+            dataTable.Columns.Add("Borrow date");
+            dataTable.Columns.Add("Return date");
+
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBorrowedBooksConnectionString"].ConnectionString;
-                SqlConnection con = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand("SELECT * FROM LBAllBorrowedBooks", con);
+                String[] lines = File.ReadAllLines(fileName3);
 
-                con.Open();
+                for (int i = 1; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-                SqlDataAdapter sda = new SqlDataAdapter();
-                sda.SelectCommand = cmd;
+                    DataRow rowToAdd = dataTable.NewRow();
+                    rowToAdd["Borrower contact"] = elements[0];
+                    rowToAdd["Book name"] = elements[1];
+                    rowToAdd["Author"] = elements[2];
+                    rowToAdd["Borrow date"] = elements[3];
+                    rowToAdd["Return date"] = elements[4];
 
-                DataTable dbDataSet = new DataTable();
-                sda.Fill(dbDataSet);
+                    dataTable.Rows.Add(rowToAdd);
+                }
 
-                BindingSource bSource = new BindingSource();
-
-                bSource.DataSource = dbDataSet;
-                this.dgvBorrowedBooks.DataSource = dbDataSet;
-                sda.Update(dbDataSet);
-                this.dgvBorrowedBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+                this.dgvBorrowedBooks.DataSource = dataTable;
             }
 
             catch (Exception e)
@@ -215,84 +233,137 @@ namespace LibraryManagementSystem
         {
             this.dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvBorrowedBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBorrowedBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvBooks.MultiSelect = false;
             this.dgvBorrowedBooks.MultiSelect = false;
         }
 
-        private void executeSearchOption(String connectionString, String query)
-        {
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            con.Open();
-
-            SqlDataAdapter sda = new SqlDataAdapter();
-            sda.SelectCommand = cmd;
-
-            DataTable dbDataSet = new DataTable();
-            sda.Fill(dbDataSet);
-
-            BindingSource bSource = new BindingSource();
-
-            bSource.DataSource = dbDataSet;
-            this.dgvBooks.DataSource = dbDataSet;
-            sda.Update(dbDataSet);
-        }
-
         private void searchOption1(String genreToFind, String availabilityToFind)
         {
-            String query = null;
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
+            String[] lines = File.ReadAllLines(fileName);
+            List<String> newLines = new List<String>();
 
             if (genreToFind.Equals("All genres"))
-                query = "SELECT * FROM LBAllBooks WHERE Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //ukljucujem i == 0 zato sto uvek hocu da kopiram patern liniju koja se nalazi u fajlu, njena pozicija je 0
+                    if (i == 0 || elements[5].Equals(availabilityToFind))
+                        newLines.Add(lines[i]);
+                }
+
+            }
 
             else
-                query = "SELECT * FROM LBAllBooks WHERE Genre = '" + genreToFind + "'AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-            executeSearchOption(connectionString, query);
+                    if (i == 0 || (elements[3].Equals(genreToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
+
+            File.WriteAllLines(fileName2, newLines);
+            loadTxtFileBooks(fileName2);
         }
 
         private void searchOption2(String nameToFind, String genreToFind, String availabilityToFind)
         {
-            String query = null;
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
+            String[] lines = File.ReadAllLines(fileName);
+            List<String> newLines = new List<String>();
 
-            if (genreToFind.Equals("All genres"))//Like % text % mi omogucava parcijalno podudaranje rezultata
-                query = "SELECT * FROM LBAllBooks WHERE Name LIKE '%" + nameToFind + "%' AND Availability = '" + availabilityToFind + "'";
+            if (genreToFind.Equals("All genres"))
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //ukljucujem i == 0 zato sto uvek hocu da kopiram patern liniju koja se nalazi u fajlu, njena pozicija je 0
+                    if (i == 0 || (elements[0].Contains(nameToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
 
             else
-                query = "SELECT * FROM LBAllBooks WHERE Name LIKE '%" + nameToFind + "%' AND Genre = '" + genreToFind + "'AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-            executeSearchOption(connectionString, query);
+                    if (i == 0 || (elements[0].Contains(nameToFind) && elements[3].Equals(genreToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
+
+            File.WriteAllLines(fileName2, newLines);
+            loadTxtFileBooks(fileName2);
+
         }
 
         private void searchOption3(String authorToFind, String genreToFind, String availabilityToFind)
         {
-            String query = null;
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
+            String[] lines = File.ReadAllLines(fileName);
+            List<String> newLines = new List<String>();
 
             if (genreToFind.Equals("All genres"))
-                query = "SELECT * FROM LBAllBooks WHERE Author LIKE '%" + authorToFind + "%' AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //ukljucujem i == 0 zato sto uvek hocu da kopiram patern liniju koja se nalazi u fajlu, njena pozicija je 0
+                    if (i == 0 || (elements[1].Contains(authorToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
 
             else
-                query = "SELECT * FROM LBAllBooks WHERE Author LIKE '%" + authorToFind + "%' AND Genre = '" + genreToFind + "'AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-            executeSearchOption(connectionString, query);
+                    if (i == 0 || (elements[1].Contains(authorToFind) && elements[3].Equals(genreToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
+
+            File.WriteAllLines(fileName2, newLines);
+            loadTxtFileBooks(fileName2);
+
         }
 
         private void searchOption4(String nameToFind, String authorToFind, String genreToFind, String availabilityToFind)
         {
-            String query = null;
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
+            String[] lines = File.ReadAllLines(fileName);
+            List<String> newLines = new List<String>();
 
             if (genreToFind.Equals("All genres"))
-                query = "SELECT * FROM LBAllBooks WHERE Name LIKE '%" + nameToFind + "%' AND Author LIKE '%" + authorToFind + "%' AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //ukljucujem i == 0 zato sto uvek hocu da kopiram patern liniju koja se nalazi u fajlu, njena pozicija je 0
+                    if (i == 0 || (elements[0].Contains(nameToFind) && elements[1].Contains(authorToFind) && elements[3].Equals(genreToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
 
             else
-                query = "SELECT * FROM LBAllBooks WHERE Name LIKE '%" + nameToFind + "%' AND Author LIKE '%" + authorToFind + "%' AND Genre = '" + genreToFind + "'AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-            executeSearchOption(connectionString, query);
+                    if (i == 0 || (elements[0].Contains(nameToFind) && elements[1].Contains(authorToFind) && elements[3].Equals(genreToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
+
+            File.WriteAllLines(fileName2, newLines);
+            loadTxtFileBooks(fileName2);
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -321,7 +392,7 @@ namespace LibraryManagementSystem
             this.txtBoxAuthor.Text = "";
             this.cBoxGenres.SelectedIndex = 0;
             this.cBoxGenres.SelectedIndex = 0;
-            loadDataBaseBooks();
+            loadTxtFileBooks(fileName);
         }
 
         private void btnBack_Click(object sender, EventArgs e)
@@ -343,7 +414,7 @@ namespace LibraryManagementSystem
                 DataGridViewRow selectedRow = dgvBooks.SelectedRows[0];
                 String bookName = selectedRow.Cells["Name"].Value.ToString();
                 String author = selectedRow.Cells["Author"].Value.ToString();
-                String price = selectedRow.Cells["Price"].Value.ToString();
+                String price = selectedRow.Cells["Price ($)"].Value.ToString();
                 String quantity = selectedRow.Cells["Quantity"].Value.ToString();
 
                 reduceQuantityDataBaseBooks(bookName, quantity);
@@ -372,27 +443,44 @@ namespace LibraryManagementSystem
             borrowerInfoStage.Show();
         }
 
+        private void btnRefreshTable_Click(object sender, EventArgs e)
+        {
+            loadTxtFileBooks(fileName);
+        }
+
         private void btnReturnToLibrary_Click(object sender, EventArgs e)
         {
             DataGridViewRow selectedRow = dgvBorrowedBooks.SelectedRows[0];
-            String bookID = selectedRow.Cells["Id"].Value.ToString();
             String bookName = selectedRow.Cells["Book name"].Value.ToString();
 
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBorrowedBooksConnectionString"].ConnectionString;
-                string deleteQuery = "DELETE FROM LBAllBorrowedBooks WHERE Id = @Id";
+                /*Boolean hasbeenFound je tu iz razloga sto  mozemo imati vise pozajmljenih knjiga sa istim imenom, autorom, i publisherom koje se podudaraju sa kliknutom knjigom
+             *  If uslov ce biti SKIPOVAN kada su stringovi jednaki ili kada je hasBeenFound = false, tada postavljamo hasBeenFound na true i tu knjigu necemo dodati u novu listu
+             *  Svaki sledeci put ako prvi deo if uslova nije ispunjen to znaci da smo naleteli opet na knjigu sa istim imenom autorom i publisherom kao i kliknuta knjiga
+             *  ali posto smo vec vratili knjigu koju smo kliknuli (knjiga koju smo vratili se vise nece nalaziti na spisku iznajmljenih knjiga), 
+             *  hasBeenFound je ispunjen i ta knjiga ce se dodati u novu listu knjiga i na taj nacin se nece obrisati sve
+             *  knjige iz lista pozajmljenih knjiga sa istim imenom autorom i publisherom kao i kliknuta knjiga
+             */
+                String[] lines = File.ReadAllLines(fileName3);
+                List<String> newLines = new List<String>();
+                Boolean hasBeenFound = false;
 
-                SqlConnection con = new SqlConnection(connectionString);
-                con.Open();
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-                SqlCommand cmd = new SqlCommand(deleteQuery, con);
-                cmd.Parameters.AddWithValue("@Id", int.Parse(bookID));
+                    if (!(elements[1].Equals(bookName)) || hasBeenFound)
+                        newLines.Add(lines[i]);
 
-                cmd.ExecuteNonQuery();
+                    else
+                        hasBeenFound = true;
+                }
+
+                File.WriteAllLines(fileName3, newLines);
 
                 increaseQuantityDataBaseBooks(bookName, 0);
-                loadDataBaseBorrowedBooks();
+                loadTxtFileBorrowedBooks();
             }
 
             catch (Exception exception)

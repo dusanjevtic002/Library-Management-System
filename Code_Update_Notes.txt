@@ -80,4 +80,13 @@ Nove stvari:
 	
 	· Promena u Klasi SettingsStage, odnosno teme će se primenjivati i na novonastalom stage-u "TransactionsStage"
 	
+______________________________________________________________________________________________________________________________________________________________________
+Vreme ažuriranja ( 13:25h 18.07.2023.)
+
+Nove stvari:
+	· Obrisane su baze podataka i uvedeni su fajlovi umesto njih, samim tim sve metode koje su ucitavale podatke su promenjene
 	
+	· Promena u klasi TranstactionsStage, dodata metoda RefreshTable kao i dugme "Refresh table" na dizajnu ove klase
+	
+	· Promena u klasi SignInStage, prilikom prijavljivanja ukoliko uneti email uopste ne postoji u "bazi" odnosno fajlu gde se cuvaju podaci
+	  korisnik ce biti obavesten da uneti email uopste ne postoji u "bazi", a ukoliko je uneo dobar email a pogresnu sifru bice obavesten o pogresnoj sifri.

@@ -3,12 +3,14 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.Windows.Forms;
 using System.Configuration;
+using System.IO;
 
 namespace LibraryManagementSystem
 {
     public partial class SignInStage : Form
     {
         private static SignInStage instance;
+        private static String fileName = "accounts.txt";
         private SignInStage()
         {
             InitializeComponent();
@@ -21,39 +23,45 @@ namespace LibraryManagementSystem
             adjustLinkLblSignUp();
         }
 
-        private void searchDataBase(String email, String password)
+        private void searchTxtFile(String email, String password)
         {
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDatabaseAllAccountsConnectionString"].ConnectionString;
-                SqlConnection connection = new SqlConnection(connectionString);
-                SqlCommand command = new  SqlCommand("SELECT * FROM LBAllAccountsTable WHERE Email='" + email + "' AND Password='" + password + "'", connection);
+                String[] lines = File.ReadAllLines(fileName);
+                Boolean noEmailFound = true;
+                Boolean noPasswordFound = true;
 
-                connection.Open();
-                SqlDataReader reader = command.ExecuteReader();
-
-                int count = 0;
-
-                String name = null;
-
-                while (reader.Read())
+                foreach(String line in lines)
                 {
-                    count++;
-                    name = reader.GetString(1);
+                    String[] elements = line.Split(',');
+                    String name = elements[0];
+                    String emailToCheck = elements[3];
+                    String passwordToCheck = elements[4];
+
+                    if(emailToCheck.Equals(email))
+                    {
+                        noEmailFound = false;
+
+                        if(passwordToCheck.Equals(password))
+                        {
+                            MessageBox.Show("You have been signed in successfully", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            noPasswordFound = false;
+
+                            MainStage mainStage = MainStage.getInstance();
+                            this.Hide();
+                            mainStage.Show();
+                            mainStage.setLblWelcome(name);
+
+                            break;
+                        }
+                    }   
                 }
+                
+                if(noEmailFound)
+                    MessageBox.Show("No account found with the specified email.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                if(count == 1)
-                {
-                    MessageBox.Show("You have been signed in successfully", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    MainStage mainStage = MainStage.getInstance();
-                    this.Hide();
-                    mainStage.Show();
-                    mainStage.setLblWelcome(name);
-
-                }
-
-                else
-                    MessageBox.Show("Invalid username or password!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                else if(noPasswordFound)
+                    MessageBox.Show("Invalid password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
             }
 
@@ -95,6 +103,14 @@ namespace LibraryManagementSystem
             signUpStage.Show();
         }
 
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            String email = txtBoxEmail.Text;
+            String password = txtBoxPassword.Text;
+            searchTxtFile(email, password);
+
+        }
+
         public static SignInStage getInstance()
         {
             if (instance == null)
@@ -106,14 +122,6 @@ namespace LibraryManagementSystem
         private void SignInStage_FormClosing(object sender, FormClosingEventArgs e)
         {
             Application.Exit();
-        }
-
-        private void btnSignIn_Click(object sender, EventArgs e)
-        {
-            String email = txtBoxEmail.Text;
-            String password = txtBoxPassword.Text;
-            searchDataBase(email, password);
-
         }
     }
 }

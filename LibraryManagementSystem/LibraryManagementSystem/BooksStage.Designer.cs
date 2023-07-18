@@ -47,8 +47,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.cBoxAvailability = new System.Windows.Forms.ComboBox();
             this.btnDelete = new System.Windows.Forms.Button();
-            this.lblID = new System.Windows.Forms.Label();
-            this.txtBoxBookID = new System.Windows.Forms.TextBox();
             this.lblInfo = new System.Windows.Forms.Label();
             this.lblSearch = new System.Windows.Forms.Label();
             this.lblNameSearch = new System.Windows.Forms.Label();
@@ -128,7 +126,7 @@
             // 
             this.lblName.AutoSize = true;
             this.lblName.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblName.Location = new System.Drawing.Point(69, 188);
+            this.lblName.Location = new System.Drawing.Point(69, 138);
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(48, 18);
             this.lblName.TabIndex = 2;
@@ -136,7 +134,7 @@
             // 
             // txtBoxName
             // 
-            this.txtBoxName.Location = new System.Drawing.Point(72, 209);
+            this.txtBoxName.Location = new System.Drawing.Point(72, 159);
             this.txtBoxName.Name = "txtBoxName";
             this.txtBoxName.Size = new System.Drawing.Size(276, 20);
             this.txtBoxName.TabIndex = 3;
@@ -145,7 +143,7 @@
             // 
             this.lblAuthor.AutoSize = true;
             this.lblAuthor.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAuthor.Location = new System.Drawing.Point(69, 254);
+            this.lblAuthor.Location = new System.Drawing.Point(69, 204);
             this.lblAuthor.Name = "lblAuthor";
             this.lblAuthor.Size = new System.Drawing.Size(51, 18);
             this.lblAuthor.TabIndex = 4;
@@ -153,7 +151,7 @@
             // 
             // txtBoxAuthor
             // 
-            this.txtBoxAuthor.Location = new System.Drawing.Point(72, 275);
+            this.txtBoxAuthor.Location = new System.Drawing.Point(72, 225);
             this.txtBoxAuthor.Name = "txtBoxAuthor";
             this.txtBoxAuthor.Size = new System.Drawing.Size(276, 20);
             this.txtBoxAuthor.TabIndex = 5;
@@ -162,7 +160,7 @@
             // 
             this.lblPublisher.AutoSize = true;
             this.lblPublisher.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPublisher.Location = new System.Drawing.Point(69, 320);
+            this.lblPublisher.Location = new System.Drawing.Point(69, 270);
             this.lblPublisher.Name = "lblPublisher";
             this.lblPublisher.Size = new System.Drawing.Size(69, 18);
             this.lblPublisher.TabIndex = 6;
@@ -170,7 +168,7 @@
             // 
             // txtBoxPublisher
             // 
-            this.txtBoxPublisher.Location = new System.Drawing.Point(72, 341);
+            this.txtBoxPublisher.Location = new System.Drawing.Point(72, 291);
             this.txtBoxPublisher.Name = "txtBoxPublisher";
             this.txtBoxPublisher.Size = new System.Drawing.Size(276, 20);
             this.txtBoxPublisher.TabIndex = 7;
@@ -179,7 +177,7 @@
             // 
             this.lblGenre.AutoSize = true;
             this.lblGenre.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGenre.Location = new System.Drawing.Point(69, 389);
+            this.lblGenre.Location = new System.Drawing.Point(69, 339);
             this.lblGenre.Name = "lblGenre";
             this.lblGenre.Size = new System.Drawing.Size(49, 18);
             this.lblGenre.TabIndex = 8;
@@ -188,7 +186,7 @@
             // cBoxGenres
             // 
             this.cBoxGenres.FormattingEnabled = true;
-            this.cBoxGenres.Location = new System.Drawing.Point(72, 410);
+            this.cBoxGenres.Location = new System.Drawing.Point(72, 360);
             this.cBoxGenres.Name = "cBoxGenres";
             this.cBoxGenres.Size = new System.Drawing.Size(276, 21);
             this.cBoxGenres.TabIndex = 9;
@@ -197,7 +195,7 @@
             // 
             this.lblQuantity.AutoSize = true;
             this.lblQuantity.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuantity.Location = new System.Drawing.Point(69, 458);
+            this.lblQuantity.Location = new System.Drawing.Point(69, 408);
             this.lblQuantity.Name = "lblQuantity";
             this.lblQuantity.Size = new System.Drawing.Size(62, 18);
             this.lblQuantity.TabIndex = 10;
@@ -207,7 +205,7 @@
             // 
             this.lblAvailability.AutoSize = true;
             this.lblAvailability.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAvailability.Location = new System.Drawing.Point(69, 525);
+            this.lblAvailability.Location = new System.Drawing.Point(69, 475);
             this.lblAvailability.Name = "lblAvailability";
             this.lblAvailability.Size = new System.Drawing.Size(74, 18);
             this.lblAvailability.TabIndex = 12;
@@ -216,7 +214,7 @@
             // btnAdd
             // 
             this.btnAdd.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdd.Location = new System.Drawing.Point(41, 662);
+            this.btnAdd.Location = new System.Drawing.Point(41, 644);
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(111, 37);
             this.btnAdd.TabIndex = 14;
@@ -227,7 +225,7 @@
             // cBoxAvailability
             // 
             this.cBoxAvailability.FormattingEnabled = true;
-            this.cBoxAvailability.Location = new System.Drawing.Point(72, 546);
+            this.cBoxAvailability.Location = new System.Drawing.Point(72, 496);
             this.cBoxAvailability.Name = "cBoxAvailability";
             this.cBoxAvailability.Size = new System.Drawing.Size(276, 21);
             this.cBoxAvailability.TabIndex = 15;
@@ -235,30 +233,13 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Location = new System.Drawing.Point(158, 662);
+            this.btnDelete.Location = new System.Drawing.Point(158, 644);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(111, 37);
             this.btnDelete.TabIndex = 16;
             this.btnDelete.Text = "Delete";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // lblID
-            // 
-            this.lblID.AutoSize = true;
-            this.lblID.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblID.Location = new System.Drawing.Point(69, 129);
-            this.lblID.Name = "lblID";
-            this.lblID.Size = new System.Drawing.Size(62, 18);
-            this.lblID.TabIndex = 17;
-            this.lblID.Text = "Book ID";
-            // 
-            // txtBoxBookID
-            // 
-            this.txtBoxBookID.Location = new System.Drawing.Point(72, 150);
-            this.txtBoxBookID.Name = "txtBoxBookID";
-            this.txtBoxBookID.Size = new System.Drawing.Size(276, 20);
-            this.txtBoxBookID.TabIndex = 18;
             // 
             // lblInfo
             // 
@@ -375,7 +356,7 @@
             // btnClearFields
             // 
             this.btnClearFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClearFields.Location = new System.Drawing.Point(275, 662);
+            this.btnClearFields.Location = new System.Drawing.Point(275, 644);
             this.btnClearFields.Name = "btnClearFields";
             this.btnClearFields.Size = new System.Drawing.Size(111, 37);
             this.btnClearFields.TabIndex = 31;
@@ -387,7 +368,7 @@
             // 
             this.lblPrice.AutoSize = true;
             this.lblPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrice.Location = new System.Drawing.Point(69, 589);
+            this.lblPrice.Location = new System.Drawing.Point(69, 539);
             this.lblPrice.Name = "lblPrice";
             this.lblPrice.Size = new System.Drawing.Size(42, 18);
             this.lblPrice.TabIndex = 33;
@@ -395,14 +376,14 @@
             // 
             // maskedTxtBoxPrice
             // 
-            this.maskedTxtBoxPrice.Location = new System.Drawing.Point(72, 610);
+            this.maskedTxtBoxPrice.Location = new System.Drawing.Point(72, 560);
             this.maskedTxtBoxPrice.Name = "maskedTxtBoxPrice";
             this.maskedTxtBoxPrice.Size = new System.Drawing.Size(276, 20);
             this.maskedTxtBoxPrice.TabIndex = 34;
             // 
             // maskedTxtBoxQuantity
             // 
-            this.maskedTxtBoxQuantity.Location = new System.Drawing.Point(72, 479);
+            this.maskedTxtBoxQuantity.Location = new System.Drawing.Point(72, 429);
             this.maskedTxtBoxQuantity.Name = "maskedTxtBoxQuantity";
             this.maskedTxtBoxQuantity.Size = new System.Drawing.Size(276, 20);
             this.maskedTxtBoxQuantity.TabIndex = 35;
@@ -429,8 +410,6 @@
             this.Controls.Add(this.lblNameSearch);
             this.Controls.Add(this.lblSearch);
             this.Controls.Add(this.lblInfo);
-            this.Controls.Add(this.txtBoxBookID);
-            this.Controls.Add(this.lblID);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.cBoxAvailability);
             this.Controls.Add(this.btnAdd);
@@ -481,8 +460,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.ComboBox cBoxAvailability;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Label lblID;
-        private System.Windows.Forms.TextBox txtBoxBookID;
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.Label lblSearch;
         private System.Windows.Forms.Label lblNameSearch;

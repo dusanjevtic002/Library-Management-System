@@ -32,6 +32,7 @@
             this.panelHeaderUsers = new System.Windows.Forms.Panel();
             this.btnBackU = new System.Windows.Forms.Button();
             this.lblUsers = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dgvUsers = new System.Windows.Forms.DataGridView();
             this.txtBoxFirstNameU = new System.Windows.Forms.TextBox();
             this.txtBoxLastNameU = new System.Windows.Forms.TextBox();
@@ -44,13 +45,11 @@
             this.lblEmailU = new System.Windows.Forms.Label();
             this.lblInformation = new System.Windows.Forms.Label();
             this.btnUpdateUser = new System.Windows.Forms.Button();
-            this.txtBoxEmployeeID = new System.Windows.Forms.TextBox();
-            this.lblEmployeeID = new System.Windows.Forms.Label();
             this.comboBoxGenderU = new System.Windows.Forms.ComboBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.btnClearFields = new System.Windows.Forms.Button();
             this.panelHeaderUsers.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).BeginInit();
             this.SuspendLayout();
             // 
             // panelHeaderUsers
@@ -85,6 +84,15 @@
             this.lblUsers.TabIndex = 1;
             this.lblUsers.Text = "Users (Employees)";
             // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.User32px;
+            this.pictureBox1.Location = new System.Drawing.Point(484, 12);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(36, 37);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
             // dgvUsers
             // 
             this.dgvUsers.AllowUserToAddRows = false;
@@ -99,14 +107,14 @@
             // 
             // txtBoxFirstNameU
             // 
-            this.txtBoxFirstNameU.Location = new System.Drawing.Point(127, 171);
+            this.txtBoxFirstNameU.Location = new System.Drawing.Point(131, 129);
             this.txtBoxFirstNameU.Name = "txtBoxFirstNameU";
             this.txtBoxFirstNameU.Size = new System.Drawing.Size(156, 20);
             this.txtBoxFirstNameU.TabIndex = 2;
             // 
             // txtBoxLastNameU
             // 
-            this.txtBoxLastNameU.Location = new System.Drawing.Point(127, 212);
+            this.txtBoxLastNameU.Location = new System.Drawing.Point(131, 170);
             this.txtBoxLastNameU.Name = "txtBoxLastNameU";
             this.txtBoxLastNameU.Size = new System.Drawing.Size(156, 20);
             this.txtBoxLastNameU.TabIndex = 3;
@@ -115,7 +123,7 @@
             // 
             this.lblFirstNameU.AutoSize = true;
             this.lblFirstNameU.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFirstNameU.Location = new System.Drawing.Point(19, 173);
+            this.lblFirstNameU.Location = new System.Drawing.Point(23, 131);
             this.lblFirstNameU.Name = "lblFirstNameU";
             this.lblFirstNameU.Size = new System.Drawing.Size(79, 18);
             this.lblFirstNameU.TabIndex = 5;
@@ -125,7 +133,7 @@
             // 
             this.lblLastNameU.AutoSize = true;
             this.lblLastNameU.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLastNameU.Location = new System.Drawing.Point(19, 212);
+            this.lblLastNameU.Location = new System.Drawing.Point(23, 170);
             this.lblLastNameU.Name = "lblLastNameU";
             this.lblLastNameU.Size = new System.Drawing.Size(76, 18);
             this.lblLastNameU.TabIndex = 6;
@@ -135,7 +143,7 @@
             // 
             this.lblGenderU.AutoSize = true;
             this.lblGenderU.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblGenderU.Location = new System.Drawing.Point(19, 252);
+            this.lblGenderU.Location = new System.Drawing.Point(23, 210);
             this.lblGenderU.Name = "lblGenderU";
             this.lblGenderU.Size = new System.Drawing.Size(57, 18);
             this.lblGenderU.TabIndex = 7;
@@ -145,7 +153,7 @@
             // 
             this.lblPassword.AutoSize = true;
             this.lblPassword.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPassword.Location = new System.Drawing.Point(19, 335);
+            this.lblPassword.Location = new System.Drawing.Point(23, 293);
             this.lblPassword.Name = "lblPassword";
             this.lblPassword.Size = new System.Drawing.Size(70, 18);
             this.lblPassword.TabIndex = 8;
@@ -153,14 +161,14 @@
             // 
             // txtBoxPasswordU
             // 
-            this.txtBoxPasswordU.Location = new System.Drawing.Point(127, 335);
+            this.txtBoxPasswordU.Location = new System.Drawing.Point(131, 293);
             this.txtBoxPasswordU.Name = "txtBoxPasswordU";
             this.txtBoxPasswordU.Size = new System.Drawing.Size(156, 20);
             this.txtBoxPasswordU.TabIndex = 9;
             // 
             // txtBoxEmailU
             // 
-            this.txtBoxEmailU.Location = new System.Drawing.Point(127, 294);
+            this.txtBoxEmailU.Location = new System.Drawing.Point(131, 252);
             this.txtBoxEmailU.Name = "txtBoxEmailU";
             this.txtBoxEmailU.Size = new System.Drawing.Size(156, 20);
             this.txtBoxEmailU.TabIndex = 10;
@@ -169,7 +177,7 @@
             // 
             this.lblEmailU.AutoSize = true;
             this.lblEmailU.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmailU.Location = new System.Drawing.Point(19, 294);
+            this.lblEmailU.Location = new System.Drawing.Point(23, 252);
             this.lblEmailU.Name = "lblEmailU";
             this.lblEmailU.Size = new System.Drawing.Size(45, 18);
             this.lblEmailU.TabIndex = 11;
@@ -188,47 +196,32 @@
             // btnUpdateUser
             // 
             this.btnUpdateUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUpdateUser.Location = new System.Drawing.Point(90, 389);
+            this.btnUpdateUser.Location = new System.Drawing.Point(26, 341);
             this.btnUpdateUser.Name = "btnUpdateUser";
-            this.btnUpdateUser.Size = new System.Drawing.Size(133, 33);
+            this.btnUpdateUser.Size = new System.Drawing.Size(122, 33);
             this.btnUpdateUser.TabIndex = 13;
-            this.btnUpdateUser.Text = "Update User";
+            this.btnUpdateUser.Text = "Update user";
             this.btnUpdateUser.UseVisualStyleBackColor = true;
             this.btnUpdateUser.Click += new System.EventHandler(this.btnUpdateUser_Click);
-            // 
-            // txtBoxEmployeeID
-            // 
-            this.txtBoxEmployeeID.Location = new System.Drawing.Point(127, 131);
-            this.txtBoxEmployeeID.Name = "txtBoxEmployeeID";
-            this.txtBoxEmployeeID.Size = new System.Drawing.Size(156, 20);
-            this.txtBoxEmployeeID.TabIndex = 14;
-            // 
-            // lblEmployeeID
-            // 
-            this.lblEmployeeID.AutoSize = true;
-            this.lblEmployeeID.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEmployeeID.Location = new System.Drawing.Point(19, 131);
-            this.lblEmployeeID.Name = "lblEmployeeID";
-            this.lblEmployeeID.Size = new System.Drawing.Size(91, 18);
-            this.lblEmployeeID.TabIndex = 15;
-            this.lblEmployeeID.Text = "Employee ID";
             // 
             // comboBoxGenderU
             // 
             this.comboBoxGenderU.FormattingEnabled = true;
-            this.comboBoxGenderU.Location = new System.Drawing.Point(127, 252);
+            this.comboBoxGenderU.Location = new System.Drawing.Point(131, 210);
             this.comboBoxGenderU.Name = "comboBoxGenderU";
             this.comboBoxGenderU.Size = new System.Drawing.Size(156, 21);
             this.comboBoxGenderU.TabIndex = 16;
             // 
-            // pictureBox1
+            // btnClearFields
             // 
-            this.pictureBox1.Image = global::LibraryManagementSystem.Properties.Resources.User32px;
-            this.pictureBox1.Location = new System.Drawing.Point(484, 12);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(36, 37);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
+            this.btnClearFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClearFields.Location = new System.Drawing.Point(165, 341);
+            this.btnClearFields.Name = "btnClearFields";
+            this.btnClearFields.Size = new System.Drawing.Size(122, 33);
+            this.btnClearFields.TabIndex = 18;
+            this.btnClearFields.Text = "Clear fields";
+            this.btnClearFields.UseVisualStyleBackColor = true;
+            this.btnClearFields.Click += new System.EventHandler(this.btnClearFields_Click);
             // 
             // UsersStage
             // 
@@ -236,9 +229,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1184, 711);
+            this.Controls.Add(this.btnClearFields);
             this.Controls.Add(this.comboBoxGenderU);
-            this.Controls.Add(this.lblEmployeeID);
-            this.Controls.Add(this.txtBoxEmployeeID);
             this.Controls.Add(this.btnUpdateUser);
             this.Controls.Add(this.lblInformation);
             this.Controls.Add(this.lblEmailU);
@@ -262,8 +254,8 @@
             this.Load += new System.EventHandler(this.UsersStage_Load);
             this.panelHeaderUsers.ResumeLayout(false);
             this.panelHeaderUsers.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvUsers)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -287,8 +279,7 @@
         private System.Windows.Forms.Label lblEmailU;
         private System.Windows.Forms.Label lblInformation;
         private System.Windows.Forms.Button btnUpdateUser;
-        private System.Windows.Forms.TextBox txtBoxEmployeeID;
-        private System.Windows.Forms.Label lblEmployeeID;
         private System.Windows.Forms.ComboBox comboBoxGenderU;
+        private System.Windows.Forms.Button btnClearFields;
     }
 }

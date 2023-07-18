@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
@@ -10,40 +12,51 @@ namespace LibraryManagementSystem
     public partial class BooksStage : Form
     {
         private static BooksStage instance;
-        private static int counter = 1;
+        //Imam dva fajla, jedan prikazuje sve knjige, a drugi sluzi da prikazuje filtrirane knjige
+        private static String fileName = "books.txt";
+        private static String fileName2 = "filteredBooks.txt";
         private BooksStage()
         {
             InitializeComponent();
             adjustComboBoxes();
             adjustDataGrid();
-            adjustTxtBox();
-            loadDataBase();
+            loadTxtFile(fileName);
             adjustMaskedTextBoxes();
         }
 
-        private void loadDataBase()
+        //Metoda kao parametar ima fileName, iz razloga sto cu uvek prosledjivati ono sto zelim da prikazem, dakle ili sve knjige ili filtrirane knjige
+        private void loadTxtFile(String fileToAdd)
         {
+            DataTable dataTable = new DataTable();
+            dataTable.Columns.Add("Name");
+            dataTable.Columns.Add("Author");
+            dataTable.Columns.Add("Publisher");
+            dataTable.Columns.Add("Genre");
+            dataTable.Columns.Add("Quantity");
+            dataTable.Columns.Add("Availability");
+            dataTable.Columns.Add("Price ($)");
+
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString;
-                SqlConnection con = new SqlConnection(connectionString);
-                SqlCommand cmd = new SqlCommand("SELECT * FROM LBAllBooks", con);
+                String[] lines = File.ReadAllLines(fileToAdd);
 
-                con.Open();
+                for(int i = 1; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-                SqlDataAdapter sda = new SqlDataAdapter();
-                sda.SelectCommand = cmd;
+                    DataRow rowToAdd = dataTable.NewRow();
+                    rowToAdd["Name"] = elements[0];
+                    rowToAdd["Author"] = elements[1];
+                    rowToAdd["Publisher"] = elements[2];
+                    rowToAdd["Genre"] = elements[3];
+                    rowToAdd["Quantity"] = elements[4];
+                    rowToAdd["Availability"] = elements[5];
+                    rowToAdd["Price ($)"] = elements[6];
 
-                DataTable dbDataSet = new DataTable();
-                sda.Fill(dbDataSet);
+                    dataTable.Rows.Add(rowToAdd);
+                }
 
-                BindingSource bSource = new BindingSource();
-
-                bSource.DataSource = dbDataSet;
-                this.dgvBooks.DataSource = dbDataSet;
-                sda.Update(dbDataSet);
-                this.dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-
+                this.dgvBooks.DataSource = dataTable;         
             }
 
             catch(Exception e)
@@ -63,7 +76,6 @@ namespace LibraryManagementSystem
             this.lblBooks.ForeColor = Color.Black;
             this.lblGenre.ForeColor = Color.Black;
             this.lblGenreSearch.ForeColor = Color.Black;
-            this.lblID.ForeColor = Color.Black;
             this.lblInfo.ForeColor = Color.Black;
             this.lblName.ForeColor = Color.Black;
             this.lblNameSearch.ForeColor = Color.Black;
@@ -83,19 +95,12 @@ namespace LibraryManagementSystem
             this.lblBooks.ForeColor = Color.White;
             this.lblGenre.ForeColor = Color.White;
             this.lblGenreSearch.ForeColor = Color.White;
-            this.lblID.ForeColor = Color.White;
             this.lblInfo.ForeColor = Color.White;
             this.lblName.ForeColor = Color.White;
             this.lblNameSearch.ForeColor = Color.White;
             this.lblPublisher.ForeColor = Color.White;
             this.lblQuantity.ForeColor = Color.White;
             this.lblSearch.ForeColor = Color.White;
-        }
-
-        private void adjustTxtBox()
-        {
-            this.txtBoxBookID.Enabled = false;
-            this.txtBoxBookID.ReadOnly = true;
         }
 
         private void adjustMaskedTextBoxes()
@@ -107,6 +112,8 @@ namespace LibraryManagementSystem
         private void adjustDataGrid()
         {
             this.dgvBooks.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            this.dgvBooks.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvBooks.MultiSelect = false;
         }
 
         private void adjustComboBoxes()
@@ -143,27 +150,6 @@ namespace LibraryManagementSystem
             mainStage.Show();
         }
 
-        private void adjustCounter()
-        {
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(connectionString);
-            con.Open();
-
-            //Query ce proci kroz bazu i vratice najveci id knjige
-            string query = "SELECT MAX(Id) FROM LBAllBooks";
-            SqlCommand command = new SqlCommand(query, con);
-
-            //Izvrsava se komanda nad LBAllBooks i vraca se prva kolona rezultata, u toj prvoj koloni je moj rezultat
-            //Result je tipa object jer povratna vrednost moze biti NULL
-            object result = command.ExecuteScalar();
-
-            if (result != DBNull.Value)
-                counter = Convert.ToInt32(result) + 1;
-
-            else
-                counter = 1;
-        }
-
         private void btnAdd_Click(object sender, EventArgs e)
         {
             String priceToCheck = this.maskedTxtBoxPrice.Text;
@@ -177,7 +163,6 @@ namespace LibraryManagementSystem
 
             else
             {
-                adjustCounter();
 
                 String name = this.txtBoxName.Text;
                 String author = this.txtBoxAuthor.Text;
@@ -189,26 +174,11 @@ namespace LibraryManagementSystem
 
                 try
                 {
-                    String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
-                    String insertSQL = "INSERT INTO LBAllBooks (Id, Name, Author, Publisher, Genre, Quantity, Availability, Price) VALUES (@Id, @Name, @Author, @Publisher, @Genre, @Quantity, @Availability, @Price)";
+                    StreamWriter booksFile = File.AppendText(fileName);
+                    booksFile.WriteLine(name + "," + author + "," + publisher + "," + genre + "," + quantity + "," + availability + "," + price);
+                    booksFile.Close();
 
-                    SqlConnection con = new SqlConnection(connectionString);
-                    SqlCommand cmd = new SqlCommand(insertSQL, con);
-                    con.Open();
-
-                    cmd.Parameters.AddWithValue("@Id", counter++);
-                    cmd.Parameters.AddWithValue("@Name", name);
-                    cmd.Parameters.AddWithValue("@Author", author);
-                    cmd.Parameters.AddWithValue("@Publisher", publisher);
-                    cmd.Parameters.AddWithValue("@Genre", genre);
-                    cmd.Parameters.AddWithValue("@Quantity", quantity);
-                    cmd.Parameters.AddWithValue("@Availability", availability);
-                    cmd.Parameters.AddWithValue("@Price", price);
-
-                    cmd.ExecuteNonQuery();
-
-                    MessageBox.Show("You have added book successfully", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    loadDataBase();
+                    loadTxtFile(fileName);
                 }
 
                 catch (Exception exception)
@@ -221,30 +191,28 @@ namespace LibraryManagementSystem
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
+            DataGridViewRow selectedRow = dgvBooks.SelectedRows[0];
+
+            String name = selectedRow.Cells["Name"].Value.ToString();
+            String author = selectedRow.Cells["Author"].Value.ToString();
+            String publisher = selectedRow.Cells["Publisher"].Value.ToString();
+ 
             try
             {
-                String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString;
-                string deleteQuery = "DELETE FROM LBAllBooks WHERE Id = @Id";
+                String[] lines = File.ReadAllLines(fileName);
+                List<String> newLines = new List<String>();
 
-                SqlConnection con = new SqlConnection(connectionString);
-                con.Open();
+                for(int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-                SqlCommand cmd = new SqlCommand(deleteQuery, con);
-                cmd.Parameters.AddWithValue("@Id", this.txtBoxBookID.Text);
+                    if (!(name.Equals(elements[0]) && author.Equals(elements[1]) && publisher.Equals(elements[2])))
+                        newLines.Add(lines[i]);
 
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("You have removed this book successfully");
-                loadDataBase();
+                }
 
-                this.txtBoxBookID.Text = "";
-                this.txtBoxAuthor.Text = "";
-                this.txtBoxName.Text = "";
-                this.txtBoxPublisher.Text = "";
-                this.maskedTxtBoxQuantity.Text = "";
-                this.maskedTxtBoxPrice.Text = "";
-                this.cBoxAvailability.SelectedIndex = 0;
-                this.cBoxGenres.SelectedIndex = 0;
-                loadDataBase();
+                File.WriteAllLines(fileName, newLines);
+                loadTxtFile(fileName);
             }
 
             catch (Exception exception)
@@ -255,7 +223,6 @@ namespace LibraryManagementSystem
 
         private void btnClearFields_Click(object sender, EventArgs e)
         {
-            this.txtBoxBookID.Text = "";
             this.txtBoxAuthor.Text = "";
             this.txtBoxName.Text = "";
             this.txtBoxPublisher.Text = "";
@@ -270,91 +237,140 @@ namespace LibraryManagementSystem
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = this.dgvBooks.Rows[e.RowIndex];
-                this.txtBoxBookID.Text = row.Cells["Id"].Value.ToString();
                 this.txtBoxName.Text = row.Cells["Name"].Value.ToString();
                 this.txtBoxAuthor.Text = row.Cells["Author"].Value.ToString();
                 this.txtBoxPublisher.Text = row.Cells["Publisher"].Value.ToString();
                 this.maskedTxtBoxQuantity.Text = row.Cells["Quantity"].Value.ToString();
                 this.cBoxGenres.Text = row.Cells["Genre"].Value.ToString();
-                this.maskedTxtBoxPrice.Text = row.Cells["Price"].Value.ToString();
+                this.maskedTxtBoxPrice.Text = row.Cells["Price ($)"].Value.ToString();
                 this.cBoxAvailability.Text = row.Cells["Availability"].Value.ToString();
             }
         }
 
-        private void executeSearchOption(String connectionString, String query)
-        {
-            SqlConnection con = new SqlConnection(connectionString);
-            SqlCommand cmd = new SqlCommand(query, con);
-
-            con.Open();
-
-            SqlDataAdapter sda = new SqlDataAdapter();
-            sda.SelectCommand = cmd;
-
-            DataTable dbDataSet = new DataTable();
-            sda.Fill(dbDataSet);
-
-            BindingSource bSource = new BindingSource();
-
-            bSource.DataSource = dbDataSet;
-            this.dgvBooks.DataSource = dbDataSet;
-            sda.Update(dbDataSet);
-        }
-
         private void searchOption1(String genreToFind, String availabilityToFind)
         {
-            String query = null;
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
+            String[] lines = File.ReadAllLines(fileName);
+            List<String> newLines = new List<String>();
 
             if (genreToFind.Equals("All genres"))
-               query = "SELECT * FROM LBAllBooks WHERE Availability = '" + availabilityToFind + "'";
+            {
+                for(int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //ukljucujem i == 0 zato sto uvek hocu da kopiram patern liniju koja se nalazi u fajlu, njena pozicija je 0
+                    if (i == 0 || elements[5].Equals(availabilityToFind))
+                        newLines.Add(lines[i]);
+                }
+ 
+            }
 
             else
-               query = "SELECT * FROM LBAllBooks WHERE Genre = '" + genreToFind + "'AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-            executeSearchOption(connectionString, query);
+                    if (i == 0 || (elements[3].Equals(genreToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
+
+            File.WriteAllLines(fileName2, newLines);
+            loadTxtFile(fileName2);
         }
 
         private void searchOption2(String nameToFind, String genreToFind, String availabilityToFind)
         {
-            String query = null;
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
+            String[] lines = File.ReadAllLines(fileName);
+            List<String> newLines = new List<String>();
 
-            if (genreToFind.Equals("All genres"))//Like % text % mi omogucava parcijalno podudaranje rezultata
-                query = "SELECT * FROM LBAllBooks WHERE Name LIKE '%" + nameToFind +  "%' AND Availability = '" + availabilityToFind + "'";
+            if (genreToFind.Equals("All genres"))
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //ukljucujem i == 0 zato sto uvek hocu da kopiram patern liniju koja se nalazi u fajlu, njena pozicija je 0
+                    if (i == 0 || (elements[0].Contains(nameToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
 
             else
-                query = "SELECT * FROM LBAllBooks WHERE Name LIKE '%" + nameToFind + "%' AND Genre = '" + genreToFind + "'AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-            executeSearchOption(connectionString, query);
+                    if (i == 0 || (elements[0].Contains(nameToFind) && elements[3].Equals(genreToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
+
+            File.WriteAllLines(fileName2, newLines);
+            loadTxtFile(fileName2);
         }
 
         private void searchOption3(String authorToFind, String genreToFind, String availabilityToFind)
         {
-            String query = null;
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
+            String[] lines = File.ReadAllLines(fileName);
+            List<String> newLines = new List<String>();
 
             if (genreToFind.Equals("All genres"))
-                query = "SELECT * FROM LBAllBooks WHERE Author LIKE '%" + authorToFind + "%' AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //ukljucujem i == 0 zato sto uvek hocu da kopiram patern liniju koja se nalazi u fajlu, njena pozicija je 0
+                    if (i == 0 || (elements[1].Contains(authorToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
 
             else
-                query = "SELECT * FROM LBAllBooks WHERE Author LIKE '%" + authorToFind + "%' AND Genre = '" + genreToFind + "'AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-            executeSearchOption(connectionString, query);
+                    if (i == 0 || (elements[1].Contains(authorToFind) && elements[3].Equals(genreToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
+
+            File.WriteAllLines(fileName2, newLines);
+            loadTxtFile(fileName2);
         }
 
         private void searchOption4(String nameToFind, String authorToFind, String genreToFind, String availabilityToFind)
         {
-            String query = null;
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString; ;
+            String[] lines = File.ReadAllLines(fileName);
+            List<String> newLines = new List<String>();
 
             if (genreToFind.Equals("All genres"))
-                query = "SELECT * FROM LBAllBooks WHERE Name LIKE '%" + nameToFind + "%' AND Author LIKE '%" + authorToFind + "%' AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
+                    //ukljucujem i == 0 zato sto uvek hocu da kopiram patern liniju koja se nalazi u fajlu, njena pozicija je 0
+                    if (i == 0 || (elements[0].Contains(nameToFind) && elements[1].Contains(authorToFind) && elements[3].Equals(genreToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
 
             else
-                query = "SELECT * FROM LBAllBooks WHERE Name LIKE '%" + nameToFind + "%' AND Author LIKE '%" + authorToFind + "%' AND Genre = '" + genreToFind + "'AND Availability = '" + availabilityToFind + "'";
+            {
+                for (int i = 0; i < lines.Length; i++)
+                {
+                    String[] elements = lines[i].Split(',');
 
-            executeSearchOption(connectionString, query);
+                    if (i == 0 || (elements[0].Contains(nameToFind) && elements[1].Contains(authorToFind) && elements[3].Equals(genreToFind) && elements[5].Equals(availabilityToFind)))
+                        newLines.Add(lines[i]);
+                }
+            }
+
+            File.WriteAllLines(fileName2, newLines);
+            loadTxtFile(fileName2);
+
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -384,7 +400,7 @@ namespace LibraryManagementSystem
             this.txtBoxAuthorSearch.Text = "";
             this.cBoxGenresSearch.SelectedIndex = 0;
             this.cBoxGenresSearch.SelectedIndex = 0;
-            loadDataBase();
+            loadTxtFile(fileName);
         }
 
         public static BooksStage getInstance()

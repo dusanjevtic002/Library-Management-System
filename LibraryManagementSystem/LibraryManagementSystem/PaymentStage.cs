@@ -65,12 +65,10 @@ namespace LibraryManagementSystem
 
             else
             {
-                foreach(String bookName in bookNames)
-                {
-                    string query = "SELECT * FROM LBAllBooks WHERE Name = '" + bookName + "'";
-                    String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDataBaseAllBooksConnectionString"].ConnectionString;
+                TransactionsStage transactionsStage = TransactionsStage.getInstance();
 
-                    TransactionsStage transactionsStage = TransactionsStage.getInstance();
+                foreach (String bookName in bookNames)
+                { 
                     transactionsStage.increaseQuantityDataBaseBooks(bookName, choice++); 
                     transactionsStage.adjustLabelCount('-'); 
                     

@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.IO;
 using System.Windows.Forms;
 
 namespace LibraryManagementSystem
 {
     public partial class SignUpStage : Form
     {
-        private static int counter = 1;
+        private static string fileName = "accounts.txt";
         public SignUpStage()
         {
             InitializeComponent();
@@ -15,8 +16,6 @@ namespace LibraryManagementSystem
 
         private void SignUpStage_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'localDatabaseAllAccountsDataSet.LBAllAccountsTable' table. You can move, or remove it, as needed.
-            this.lBAllAccountsTableTableAdapter.Fill(this.localDatabaseAllAccountsDataSet.LBAllAccountsTable);
             adjustPasswordBoxes();
             loadComboBoxGenders();
         }
@@ -53,37 +52,8 @@ namespace LibraryManagementSystem
                 this.txtBoxPassword.PasswordChar = '*';
         }
 
-        private void SignUpStage_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Application.Exit();
-        }
-
-        //Resava problem sa jedinstvenim Id-jem
-        private void adjustCounter()
-        {
-            String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDatabaseAllAccountsConnectionString"].ConnectionString;
-            SqlConnection con = new SqlConnection(connectionString);
-            con.Open();
-
-            //Query ce proci kroz bazu i vratice najveci id knjige
-            string query = "SELECT MAX(Id) FROM LBAllAccountsTable";
-            SqlCommand command = new SqlCommand(query, con);
-
-            //Izvrsava se komanda nad LBAllBooks i vraca se prva kolona rezultata, u toj prvoj koloni je moj rezultat
-            //Result je tipa object jer povratna vrednost moze biti NULL
-            object result = command.ExecuteScalar();
-
-            if (result != DBNull.Value)
-                counter = Convert.ToInt32(result) + 1;
-
-            else
-                counter = 1;
-        }
-
         private void btnSignUp_Click(object sender, EventArgs e)
         {
-            adjustCounter();
-
             String firstName = txtBoxFirstName.Text;
             String lastName = txtBoxLastName.Text;
             String gender = comboBoxGender.Text;
@@ -95,23 +65,9 @@ namespace LibraryManagementSystem
             {
                 try
                 {
-                   String connectionString = ConfigurationManager.ConnectionStrings["LibraryManagementSystem.Properties.Settings.LocalDatabaseAllAccountsConnectionString"].ConnectionString; ;
-                   String insertSQL = "INSERT INTO LBAllAccountsTable (Id, FirstName, LastName, Gender, Email, Password) VALUES (@Id, @FirstName, @LastName, @Gender, @Email, @Password)";
-                  // String deleteSQL = "DELETE FROM LBAllAccountsTable WHERE Id = @Id";
-
-                    SqlConnection con = new SqlConnection(connectionString);
-                    SqlCommand cmd = new SqlCommand(insertSQL, con);
-                    con.Open();
-
-                    cmd.Parameters.AddWithValue("@Id", counter++);
-                    cmd.Parameters.AddWithValue("@FirstName", firstName);
-                    cmd.Parameters.AddWithValue("@LastName", lastName);
-                    cmd.Parameters.AddWithValue("@Gender", gender);
-                    cmd.Parameters.AddWithValue("@Email", email);
-                    cmd.Parameters.AddWithValue("@Password", password);
-                    //cmd.Parameters.AddWithValue("@Id", 1);
-
-                    cmd.ExecuteNonQuery();
+                    StreamWriter accountsFile = File.AppendText(fileName);
+                    accountsFile.WriteLine(firstName + "," + lastName + "," + gender + ","  + email + "," + password);
+                    accountsFile.Close();
 
                     MessageBox.Show("You have been signed up successfully", "Confirmation", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -135,12 +91,9 @@ namespace LibraryManagementSystem
             return true;
         }
 
-        private void lBAllAccountsTableBindingNavigatorSaveItem_Click(object sender, EventArgs e)
+        private void SignUpStage_FormClosing(object sender, FormClosingEventArgs e)
         {
-            this.Validate();
-            this.lBAllAccountsTableBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.localDatabaseAllAccountsDataSet);
-
+            Application.Exit();
         }
     }
 }

@@ -44,8 +44,6 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
-            this.lblQuestionSerialNo = new System.Windows.Forms.Label();
-            this.txtBoxQuestionSerialNo = new System.Windows.Forms.TextBox();
             this.printDocument = new System.Drawing.Printing.PrintDocument();
             this.printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.panelHeaderFaqs.SuspendLayout();
@@ -99,7 +97,7 @@
             // 
             this.lblAddQuestion.AutoSize = true;
             this.lblAddQuestion.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAddQuestion.Location = new System.Drawing.Point(69, 97);
+            this.lblAddQuestion.Location = new System.Drawing.Point(69, 96);
             this.lblAddQuestion.Name = "lblAddQuestion";
             this.lblAddQuestion.Size = new System.Drawing.Size(342, 25);
             this.lblAddQuestion.TabIndex = 1;
@@ -119,7 +117,7 @@
             // 
             // txtBoxTitleOfQuestion
             // 
-            this.txtBoxTitleOfQuestion.Location = new System.Drawing.Point(74, 220);
+            this.txtBoxTitleOfQuestion.Location = new System.Drawing.Point(74, 182);
             this.txtBoxTitleOfQuestion.Name = "txtBoxTitleOfQuestion";
             this.txtBoxTitleOfQuestion.Size = new System.Drawing.Size(337, 20);
             this.txtBoxTitleOfQuestion.TabIndex = 3;
@@ -128,7 +126,7 @@
             // 
             this.lblTitleOfQuestion.AutoSize = true;
             this.lblTitleOfQuestion.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitleOfQuestion.Location = new System.Drawing.Point(71, 199);
+            this.lblTitleOfQuestion.Location = new System.Drawing.Point(71, 161);
             this.lblTitleOfQuestion.Name = "lblTitleOfQuestion";
             this.lblTitleOfQuestion.Size = new System.Drawing.Size(114, 18);
             this.lblTitleOfQuestion.TabIndex = 4;
@@ -136,9 +134,9 @@
             // 
             // rTBoxAnswer
             // 
-            this.rTBoxAnswer.Location = new System.Drawing.Point(74, 279);
+            this.rTBoxAnswer.Location = new System.Drawing.Point(74, 245);
             this.rTBoxAnswer.Name = "rTBoxAnswer";
-            this.rTBoxAnswer.Size = new System.Drawing.Size(337, 213);
+            this.rTBoxAnswer.Size = new System.Drawing.Size(337, 260);
             this.rTBoxAnswer.TabIndex = 5;
             this.rTBoxAnswer.Text = "";
             // 
@@ -146,7 +144,7 @@
             // 
             this.lblAnswer.AutoSize = true;
             this.lblAnswer.Font = new System.Drawing.Font("Constantia", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblAnswer.Location = new System.Drawing.Point(71, 258);
+            this.lblAnswer.Location = new System.Drawing.Point(71, 224);
             this.lblAnswer.Name = "lblAnswer";
             this.lblAnswer.Size = new System.Drawing.Size(57, 18);
             this.lblAnswer.TabIndex = 6;
@@ -206,23 +204,6 @@
             this.btnPrint.UseVisualStyleBackColor = true;
             this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
-            // lblQuestionSerialNo
-            // 
-            this.lblQuestionSerialNo.AutoSize = true;
-            this.lblQuestionSerialNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblQuestionSerialNo.Location = new System.Drawing.Point(71, 143);
-            this.lblQuestionSerialNo.Name = "lblQuestionSerialNo";
-            this.lblQuestionSerialNo.Size = new System.Drawing.Size(132, 18);
-            this.lblQuestionSerialNo.TabIndex = 12;
-            this.lblQuestionSerialNo.Text = "Question serial no.";
-            // 
-            // txtBoxQuestionSerialNo
-            // 
-            this.txtBoxQuestionSerialNo.Location = new System.Drawing.Point(74, 164);
-            this.txtBoxQuestionSerialNo.Name = "txtBoxQuestionSerialNo";
-            this.txtBoxQuestionSerialNo.Size = new System.Drawing.Size(337, 20);
-            this.txtBoxQuestionSerialNo.TabIndex = 13;
-            // 
             // printDocument
             // 
             this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
@@ -243,8 +224,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1184, 711);
-            this.Controls.Add(this.txtBoxQuestionSerialNo);
-            this.Controls.Add(this.lblQuestionSerialNo);
             this.Controls.Add(this.btnPrint);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnUpdate);
@@ -289,8 +268,6 @@
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnPrint;
-        private System.Windows.Forms.Label lblQuestionSerialNo;
-        private System.Windows.Forms.TextBox txtBoxQuestionSerialNo;
         private System.Drawing.Printing.PrintDocument printDocument;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog;
     }
