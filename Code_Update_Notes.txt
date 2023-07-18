@@ -90,3 +90,10 @@ Nove stvari:
 	
 	· Promena u klasi SignInStage, prilikom prijavljivanja ukoliko uneti email uopste ne postoji u "bazi" odnosno fajlu gde se cuvaju podaci
 	  korisnik ce biti obavesten da uneti email uopste ne postoji u "bazi", a ukoliko je uneo dobar email a pogresnu sifru bice obavesten o pogresnoj sifri.
+
+_______________________________________________________________________________________________________________________________________________________________________
+Vreme ažuriranja ( 16:55h 18.07.2023.)
+
+Nove stvari:
+	· Promena u klasi SignInStage, dodata je metoda checkFiles koja ce proveriti da li postoje fajlovi u koje se cuvaju podaci, u slucaju da ako je neko recimo
+	  tek skinuo aplikaciju, tada ce se kreirati svi fajlovi i biti upisana pattern linija svakog fajla

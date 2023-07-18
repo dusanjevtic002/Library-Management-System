@@ -1,0 +1,3 @@
+Borrower contact,Book name,Author,Genre,Borrow date,Return date
+063000000,TestBook5,TestAuthor5,18/07/2023,01/08/2023
+contact6,TestBook7,TestAuthor7,18/07/2023,18/07/2023
